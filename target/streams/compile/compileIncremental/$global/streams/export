@@ -1,0 +1,1 @@
+scalac -classpath /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes -bootclasspath /Users/yokoekazuma/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar /Users/yokoekazuma/dev/sandbox/scala/atcoder/src/main/scala/atcoder/BeginnersSelection.scala

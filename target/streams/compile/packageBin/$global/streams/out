@@ -1,0 +1,15 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/atcoder_2.12-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes/example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	atcoder[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes/atcoder[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes/example/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	atcoder/BeginnersSelection.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes/atcoder/BeginnersSelection.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	atcoder/BeginnersSelection$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes/atcoder/BeginnersSelection$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/yokoekazuma/dev/sandbox/scala/atcoder/target/scala-2.12/classes/example/Main$.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
