@@ -78,4 +78,22 @@ object BeginnersSelection {
     println(count)
   }
 
+  def ABC083B: Unit = {
+    import java.util.Scanner
+    val src = new Scanner(System.in)
+    val maxNum = src.nextInt
+    val minOfSum = src.nextInt
+    val maxOfSum = src.nextInt
+    var sumOfNum = 0
+    for(n <- 1 to maxNum) {
+      val list = n.toString.split("")
+      val result = list.foldLeft(0){(x,y) => x.toInt + y.toInt}
+      val term = result >= minOfSum && result <= maxOfSum
+      if(term) {
+        sumOfNum += n
+      }
+    }
+    println(sumOfNum)
+  }
+
 }
