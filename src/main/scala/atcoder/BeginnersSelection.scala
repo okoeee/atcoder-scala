@@ -96,4 +96,14 @@ object BeginnersSelection {
     println(sumOfNum)
   }
 
+  def ABC088B: Unit = {
+    val _ = io.StdIn.readInt
+    val l = io.StdIn.readLine().split(" ").map(_.toInt)
+    val a = l.sorted(Ordering.Int.reverse).zipWithIndex.map(p => {
+      if(p._2 % 2 == 0) (p._1)
+      else -(p._1)
+    })
+    println(a.sum)
+  }
+
 }
