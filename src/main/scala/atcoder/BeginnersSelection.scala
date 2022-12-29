@@ -106,4 +106,34 @@ object BeginnersSelection {
     println(a.sum)
   }
 
+  def ABC085B: Unit = {
+    val N = io.StdIn.readInt
+    val n = for(i <- 1 to N) yield io.StdIn.readInt
+    val l = n.sorted(Ordering.Int).foldLeft((0, 0)) {(x, y) =>
+      if(x._2 < y) {
+        (x._1 + 1, y)
+      } else {
+        (x._1, y)
+      }
+    }
+    println(l._1)
+  }
+
+  def ABC085B_ref: Unit = {
+    println("入力してください")
+    val N = readInt
+    var t = Set[Int]()
+    for (e <- (1 to N)) {
+      t = t + readInt
+      println(s"t = $t")
+    }
+    println(t.size)
+  }
+
+  def ABC085B_ref_arrange: Unit = {
+    val N = io.StdIn.readInt
+    val a = (for(i <- 1 to N) yield io.StdIn.readInt).toSet.size
+    println(a)
+  }
+
 }
