@@ -136,4 +136,22 @@ object BeginnersSelection {
     println(a)
   }
 
+  def ABC085C: Unit = {
+    val Array(numOfBills, amountOfSum) = io.StdIn.readLine().split(" ").map(_.toInt)
+    for(
+      ix <- 0 to numOfBills;
+      iy <- 0 to numOfBills - ix
+    ) yield {
+      val x = ix
+      val y = iy
+      val z = numOfBills - x - y
+      val isMuchAmount = 1000*x + 5000*y + 10000*z == amountOfSum
+      if(isMuchAmount) {
+        println(s"$z $y $x")
+        sys.exit()
+      }
+    }
+    println("-1 -1 -1")
+  }
+
 }
