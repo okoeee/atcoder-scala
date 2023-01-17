@@ -14,6 +14,7 @@ object Main {
     // BeginnersSelection.ABC085B
     // BeginnersSelection.ABC085B_ref
     // BeginnersSelection.ABC085B_ref_arrange
-    BeginnersSelection.ABC085C
+    // BeginnersSelection.ABC085C
+    BeginnersSelection.ABC049C
   }
 }

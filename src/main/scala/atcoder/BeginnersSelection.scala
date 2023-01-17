@@ -154,4 +154,13 @@ object BeginnersSelection {
     println("-1 -1 -1")
   }
 
+  def ABC049C: Unit = {
+    val input = io.StdIn.readLine
+    if(input.matches("""^(dream|dreamer|erase|eraser)+$""")){
+      println("YES")
+    } else {
+      println("NO")
+    }
+  }
+
 }
