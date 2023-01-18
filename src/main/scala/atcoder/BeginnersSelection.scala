@@ -163,4 +163,18 @@ object BeginnersSelection {
     }
   }
 
+  def ABC086C: Unit = {
+    // x+y < t && x+yとtの奇遇が一致 でOK
+    println("Input something")
+    val list = for(i <- 1 to io.StdIn.readInt()) yield {
+      val line = io.StdIn.readLine().split(" ").map(_.toInt)
+      val (t, x, y) = (line(0), line(1).abs, line(2).abs)
+      if (x + y <= t && (x + y) % 2 == t % 2) 1
+      else 0
+    }
+    if(list.exists(_ == 0)) println("No")
+    else println("Yes")
+
+  }
+
 }
