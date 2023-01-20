@@ -17,6 +17,7 @@ object Main {
     // BeginnersSelection.ABC085C
     // BeginnersSelection.ABC049C
     // BeginnersSelection.ABC086C
-    BeginnerContest.ABC285_A
+    // BeginnerContest.ABC285_A
+    BeginnerContest.ABC285_B
   }
 }
