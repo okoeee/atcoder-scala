@@ -46,4 +46,46 @@ object BeginnerContest {
     println(result.sum)
   }
 
+  def ABC285_D: Unit = {
+    println("input value")
+    val num = io.StdIn.readInt
+    def returnSAndT(num: Int, s: Seq[String], t: Seq[String]): (Seq[String], Seq[String]) = {
+      if (num != 0) {
+        val list = io.StdIn.readLine.split(" ")
+        val newS = s :+ list(0)
+        val newT = t :+ list(1)
+        returnSAndT(num - 1, newS, newT)
+      } else {
+        (s, t)
+      }
+    }
+    val (s, t) = returnSAndT(num, Seq(), Seq())
+    def returnCompleted(num: Int, s: Seq[String], t: Seq[String], r: Boolean): Boolean = {
+      if (num != 0 && r == true) {
+        val i = t.zipWithIndex.map { case (v, index) =>
+          val r = s.indexOf(v)
+          if (r == -1) index
+          else -1
+        }
+        // iから-1以外の最初の数字を探す
+        val matchedListNum = i.find(_ > -1)
+        matchedListNum match {
+          case Some(x) =>
+            // s, tからmatchしたindexの値を削除
+            val newS = s diff Seq(s(x))
+            val newT = t diff Seq(t(x))
+            returnCompleted(num - 1, newS, newT, true)
+          case _ =>
+            // falseを返す
+            returnCompleted(0, s, t, false)
+        }
+      } else {
+        r
+      }
+    }
+
+    if (returnCompleted(num, s, t, true)) println("Yes")
+    else println("No")
+  }
+
 }
