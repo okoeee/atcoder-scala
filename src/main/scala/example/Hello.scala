@@ -22,6 +22,7 @@ object Main {
     // BeginnerContest.ABC285_C
     // BeginnerContest.ABC285_D
     // ABC212.Alloy
-    ABC212.weakPassword
+    // ABC212.weakPassword
+    ABC212.minDifference
   }
 }

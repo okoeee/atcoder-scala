@@ -22,4 +22,26 @@ object ABC212 {
       println("Strong")
     }
   }
+
+  def minDifference = {
+    println("input value")
+    import scala.math._
+    val numList = io.StdIn.readLine.split(" ").map(_.toInt)
+    val numOfB = numList.last
+    val listA = io.StdIn.readLine.split(" ").map(_.toInt).toSet.toList.sorted
+    val listB = io.StdIn.readLine.split(" ").map(_.toInt).toSet.toList.sorted
+
+    def cal(a: Int, listA: List[Int], b: Int, listB: List[Int], min: Int): Int = {
+      val diff = abs(a - b)
+      if (diff == 0) 0
+      else if (min < diff) min
+      else cal(listA.head, listA.tail, b, listB, diff)
+    }
+
+    println(cal(listA.head, listA, listB.head, listB, Int.MaxValue))
+
+  }
+
+
+
 }
