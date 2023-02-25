@@ -1,6 +1,6 @@
 package example
 
-import atcoder.{BeginnerContest, BeginnersSelection}
+import atcoder.{ABC212, BeginnerContest, BeginnersSelection}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -20,6 +20,8 @@ object Main {
     // BeginnerContest.ABC285_A
     // BeginnerContest.ABC285_B
     // BeginnerContest.ABC285_C
-    BeginnerContest.ABC285_D
+    // BeginnerContest.ABC285_D
+    // ABC212.Alloy
+    ABC212.weakPassword
   }
 }
