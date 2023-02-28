@@ -42,6 +42,30 @@ object ABC212 {
 
   }
 
+  def queryingMultiset = {
+    println("input value")
+    val queryNum = io.StdIn.readInt
 
+    def cal(i: Long, boxList: List[Long], recordList: List[Long]): List[Long] = {
+      if (i > queryNum) recordList
+      else {
+        io.StdIn.readLine.split(" ").map(_.toInt).toList match {
+          case head :: Nil =>
+            val minNum = boxList.min
+            val retrievedList = boxList.diff(Seq(minNum))
+            println(minNum)
+            cal(i + 1, retrievedList, minNum :: recordList)
+          case head :: last =>
+            if (head == 1) {
+              cal(i + 1, last(0) :: boxList, recordList)
+            } else {
+              cal(i + 1, boxList.map(v => v + last(0)), recordList)
+            }
+        }
+      }
+    }
+
+    cal(1, List(), List())
+  }
 
 }
