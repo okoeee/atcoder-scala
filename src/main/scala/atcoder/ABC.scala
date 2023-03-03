@@ -52,4 +52,14 @@ object ABC {
     println(k)
   }
 
+  def oneMoreAabAbaBaa = {
+    println("input value")
+    io.StdIn.readLine.split(" ").toList match {
+      case List(s, k) =>
+        s.split("").toList.map{v =>
+
+        }
+    }
+  }
+
 }
