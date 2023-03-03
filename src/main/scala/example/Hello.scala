@@ -4,6 +4,7 @@ import atcoder.{ABC, ABC212, BeginnerContest, BeginnersSelection}
 
 object Main {
   def main(args: Array[String]): Unit = {
+    println("input value")
     // BeginnersSelection.practiceA()
     // BeginnersSelection.ABC086A()
     // BeginnersSelection.ABC081A
@@ -29,6 +30,8 @@ object Main {
     // ABC.boobyPrize
     // ABC.howMany
     // ABC.log2
-    ABC.oneMoreAabAbaBaa
+    // ABC.oneMoreAabAbaBaa
+    // ABC.signedDifficulty
+    ABC.sameName
   }
 }

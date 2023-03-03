@@ -56,10 +56,37 @@ object ABC {
     println("input value")
     io.StdIn.readLine.split(" ").toList match {
       case List(s, k) =>
-        s.split("").toList.map{v =>
+        s.split("").toList.map { v => }
+    }
+  }
 
+  def signedDifficulty = {
+    println("input value")
+    val result = io.StdIn.readLine.split("\\.").map(_.toInt).toList match {
+      case List(x, y) =>
+        if (y >= 0 && y <= 2) s"$x-"
+        else if (y >= 3 && y <= 6) s"$x"
+        else if (y >= 7 && y <= 9) s"$x+"
+      case x: Any => println(x)
+    }
+    println(result)
+  }
+
+  def sameName = {
+    val n = io.StdIn.readInt
+
+    def cal(n: Int, preList: List[(String, String)]): String = {
+      if (n == 0) "No"
+      else
+        io.StdIn.readLine.split(" ").toList match {
+          case List(x, y) =>
+            val hoge = preList.exists(p => p._1 == x && p._2 == y)
+            if (hoge) "Yes"
+            else cal(n - 1, (x, y) +: preList)
         }
     }
+
+    println(cal(n, List(): List[(String, String)]))
   }
 
 }
