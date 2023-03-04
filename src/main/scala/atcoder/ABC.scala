@@ -89,4 +89,34 @@ object ABC {
     println(cal(n, List(): List[(String, String)]))
   }
 
+  def sameNameOther = {
+    val n = io.StdIn.readInt
+    val list = List.fill(n)(io.StdIn.readLine)
+    println {
+      if (list.size == list.toSet.size) "No"
+      else "Yes"
+    }
+  }
+
+  def lexicographicOrder = {
+    val list = io.StdIn.readLine.split(" ").toList
+    val sortedList = list.sortWith(_ < _)
+    println {
+      if (list == sortedList) "Yes"
+      else "No"
+    }
+  }
+
+  def atcoderQuiz = {
+    val list = List.fill(3)(io.StdIn.readLine)
+    val result = List("ABC", "ARC", "AGC", "AHC").filter(p => !list.contains(p)).head
+    println(result)
+  }
+
+  def atcoderQuizOther = {
+    val list = List.fill(3)(io.StdIn.readLine)
+    val result = List("ABC", "ARC", "AGC", "AHC").diff(list).head
+    println(result)
+  }
+
 }
