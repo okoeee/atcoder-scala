@@ -119,4 +119,21 @@ object ABC {
     println(result)
   }
 
+  def inverseOfPermutation = {
+    val _ = io.StdIn.readInt
+    val q = io.StdIn.readLine.split(" ").zipWithIndex.map { case (p, index) => (p.toInt, index + 1) }
+    val sortedQ = q.sortBy(_._1)
+    val result = sortedQ.foldLeft("") { (acc, x) => acc + " " + (x._2).toString }.trim
+    println(result)
+  }
+
+  def inverseOfPermutationOther = {
+    val in = new java.util.Scanner(System.in)
+    val N = in.nextInt
+    val Qs = List.fill(N)(in.nextInt)
+    println(Qs.zipWithIndex.sorted.map(_._2 + 1).mkString(" "))
+  }
+
+  
+
 }
