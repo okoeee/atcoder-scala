@@ -134,6 +134,47 @@ object ABC {
     println(Qs.zipWithIndex.sorted.map(_._2 + 1).mkString(" "))
   }
 
-  
+  def weatherForecast = {
+    val n = io.StdIn.readInt
+    val list = io.StdIn.readLine.split("")
+    if (list(n - 1) == "o") println("Yes")
+    else println("No")
+  }
+
+  def weatherForecastOther = {
+    val n = io.StdIn.readInt
+    val list = io.StdIn.readLine
+    list.charAt(n - 1)
+  }
+
+  def qwerty = {
+    val A = "abcdefghijklmnopqrstuvwxyz"
+    val list = io.StdIn.readLine.split(" ")
+    val result = list.map { v => A.charAt(v.toInt - 1) }.mkString
+    println(result)
+  }
+
+  def shapesOther = {
+    val in = new java.util.Scanner(System.in)
+    val N = in.nextInt
+    val S = List.fill(N)(in.next.toList)
+    val T = List.fill(N)(in.next.toList)
+
+    println(s"""
+         |S = $S
+         |T = $T
+         |""".stripMargin)
+
+    def rotate(g: List[List[Char]]): List[List[Char]] = g.transpose.map(_.reverse)
+    def trimAndRotate(g: List[List[Char]]): List[List[Char]] = rotate(g.dropWhile(_.forall(_ == '.')))
+
+    val trimedS = (1 to 4).foldLeft(S)((s, _) => trimAndRotate(s))
+    val trimedT = (1 to 4).foldLeft(T)((t, _) => trimAndRotate(t))
+    val allS = (1 to 3).scanLeft(trimedS)((s, _) => rotate(s))
+
+    println(s"$trimedS")
+
+    println(if (allS.contains(trimedT)) "Yes" else "No")
+  }
 
 }

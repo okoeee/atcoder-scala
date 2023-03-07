@@ -7,6 +7,8 @@ import scala.concurrent.Future
 object Main {
   def main(args: Array[String]): Unit = {
     println("input value")
-    ABC.inverseOfPermutation
+    ABC.shapesOther
+
+    Seq(1,2) ++ Seq(2,3)
   }
 }
