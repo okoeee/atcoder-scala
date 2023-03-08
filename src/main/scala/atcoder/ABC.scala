@@ -177,4 +177,37 @@ object ABC {
     println(if (allS.contains(trimedT)) "Yes" else "No")
   }
 
+  def atCoderQuiz2 = {
+    val x = io.StdIn.readInt
+    if (x >= 0 && x < 40) println(40 - x)
+    else if (x >= 40 && x < 70) println(70 - x)
+    else if (x >= 70 && x < 90) println(90 - x)
+    else println("expert")
+  }
+
+  def maritozzo = {
+    val s1 = io.StdIn.readLine
+    val s2 = io.StdIn.readLine
+    val s3 = io.StdIn.readLine
+    val list = io.StdIn.readLine.split("").map { v =>
+      v.toInt match {
+        case 1 => s1
+        case 2 => s2
+        case 3 => s3
+        case _ => // do nothing
+      }
+    }
+    println(list.mkString)
+  }
+
+  def neoLexicographicOrdering = {
+    val in = new java.util.Scanner(System.in)
+    val X = in.next
+    val N = in.nextInt
+    val Ss = List.fill(N)(in.next)
+
+    val sortedList = Ss.sortBy(_.map(c => X.indexOf(c).toChar))
+    println(sortedList.mkString)
+  }
+
 }
