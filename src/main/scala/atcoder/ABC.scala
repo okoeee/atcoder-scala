@@ -11,6 +11,7 @@ object ABC {
     io.StdIn.readLine.split(" ").map(_.toInt).toList match {
       case head :: tail =>
         println(head ^ tail(0))
+      case _ =>
     }
   }
 
@@ -37,6 +38,7 @@ object ABC {
             else 0
           }
         println(rList.sum)
+      case _ =>
     }
   }
 
@@ -208,6 +210,56 @@ object ABC {
 
     val sortedList = Ss.sortBy(_.map(c => X.indexOf(c).toChar))
     println(sortedList.mkString)
+  }
+
+  def findMultiple = {
+    io.StdIn.readLine.split(" ").map(_.toInt).toList match {
+      case List(a: Int, b: Int, c: Int) =>
+        println(cal(a, b, c))
+      case _ => // do noting
+    }
+
+    def cal(A: Int, B: Int, C: Int): Int = {
+      val multiC = C * 2
+      if (multiC < A) cal(A, B, multiC)
+      else if (multiC < B) multiC
+      else -1
+    }
+  }
+
+  def findMultipleOther = {
+    io.StdIn.readLine.split(" ").map(_.toInt).toList match {
+      case List(a: Int, b: Int, c: Int) =>
+        val y = b / c * c
+        if (y >= a) println(y)
+        else println(-1)
+      case _ =>
+    }
+  }
+
+  def baseK = {
+    val K = io.StdIn.readInt()
+    println(io.StdIn.readLine().split(" ").map(x => Integer.parseInt(x, K).toLong).foldLeft(1: Long)((acc, x) => acc * x))
+  }
+
+  def longSequence = {
+    val N = io.StdIn.readInt
+    val seq = io.StdIn.readLine.split(" ").map(_.toLong)
+    val X = io.StdIn.readLong
+    val seqTotal = seq.sum
+
+    val init = X / seqTotal
+    val remain = X % seqTotal
+    var tempSum: Long = 0
+    var i: Int = 0
+
+    while (tempSum <= remain) {
+      tempSum += seq(i % N)
+      i += 1
+    }
+
+    println(init * N + i)
+
   }
 
 }
