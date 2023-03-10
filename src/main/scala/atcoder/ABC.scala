@@ -262,4 +262,45 @@ object ABC {
 
   }
 
+  def seimicMangitudeScales = {
+    io.StdIn.readLine.split(" ").map(_.toInt).toList match {
+      case List(a: Int, b: Int) =>
+        val diff = a - b
+        println(Math.pow(32, diff).toLong)
+      case _ =>
+    }
+  }
+
+  def seimicMangitudeScalesOther = {
+    val array = io.StdIn.readLine.split(" ").map(_.toInt)
+    val a = array(0)
+    val b = array(1)
+    val diff = a - b
+    println(Math.pow(32, diff).toLong)
+  }
+
+  def seimicMangitudeScalesOther2 = {
+    val sc = new java.util.Scanner(System.in)
+    val a = (sc.nextInt - sc.nextInt)
+    println(Math.pow(32, a).toLong)
+  }
+
+  def bTypo = {
+    val S = io.StdIn.readLine
+    val T = io.StdIn.readLine
+    if (S == T) println("Yes")
+    else {
+      val immutableArray = S.split("")
+      val modifiedArray = for (i <- 0 to S.length - 2) yield {
+        var mutableArray = scala.collection.mutable.ListBuffer[String]()
+        immutableArray.foreach(v => mutableArray += v)
+        mutableArray(i) = immutableArray(i + 1)
+        mutableArray(i + 1) = immutableArray(i)
+        mutableArray.mkString
+      }
+      if (modifiedArray.contains(T)) println("Yes")
+      else println("No")
+    }
+  }
+
 }
