@@ -1,5 +1,7 @@
 package atcoder
 
+import java.util.Scanner
+
 object ABC {
 
   def bitWiseExclusiveOr = {
@@ -341,6 +343,30 @@ object ABC {
       case List(ll, rr) :: xs =>
         separate(xs, l * 10 + (if (diff) rr else ll), r * 10 + (if (diff) ll else rr), diff || ll > rr)
     }
+  }
+
+  def fourDigits = {
+    val N = io.StdIn.readLine
+    val diff = 4 - N.length
+    println((1 to diff).foldLeft("") { (acc, x) => acc + "0" } + N)
+  }
+
+  def fourDigitsOther = {
+    val N = io.StdIn.readInt
+    println("%04d".format(N))
+  }
+
+  def failingGrade = {
+    val (n, p) = io.StdIn.readLine.split(" ").map(_.toInt) match { case Array(n: Int, p: Int) => (n, p) }
+    val count = io.StdIn.readLine.split(" ").count(a => a.toInt < p)
+    println(count)
+  }
+
+  def filingGrade = {
+    val sc = new java.util.Scanner(System.in)
+    val N, P = sc.nextInt
+    val scores = List.fill(N)(sc.nextInt)
+    scores.count(_ < P)
   }
 
 }
