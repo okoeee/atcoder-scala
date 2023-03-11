@@ -290,16 +290,56 @@ object ABC {
     val T = io.StdIn.readLine
     if (S == T) println("Yes")
     else {
-      val immutableArray = S.split("")
-      val modifiedArray = for (i <- 0 to S.length - 2) yield {
-        var mutableArray = scala.collection.mutable.ListBuffer[String]()
-        immutableArray.foreach(v => mutableArray += v)
-        mutableArray(i) = immutableArray(i + 1)
-        mutableArray(i + 1) = immutableArray(i)
-        mutableArray.mkString
+      val changedList = for (i <- 0 to S.length - 2) yield {
+        swap(S, i, i + 1)
       }
-      if (modifiedArray.contains(T)) println("Yes")
+
+      if (changedList.contains(T)) println("Yes")
       else println("No")
+
+    }
+
+    def swap(S: String, i: Int, j: Int): String = {
+      val arr = S.split("")
+      val temp = arr(i)
+      arr(i) = arr(j)
+      arr(j) = temp
+      arr.mkString
+    }
+
+  }
+
+  def bTypeOther = {
+    val sc = new java.util.Scanner(System.in)
+    val S, T = sc.next
+
+    def swaps = (0 until S.size).sliding(2).map { case Seq(i, j) => swap(S, i, j) }
+    def swap(s: String, i: Int, j: Int) = {
+      val arr = s.toArray
+      arr(i) = s.charAt(j)
+      arr(j) = s.charAt(i)
+      arr.mkString
+    }
+    println(if (S == T || swaps.exists(_ == T)) "Yes" else "No")
+  }
+
+  def selectMul = {
+    val N = io.StdIn.readLine.split("").sortWith(_ > _)
+
+    val x = N.zipWithIndex.filter(v => v._2 % 2 == 0).map(_._1).mkString.toLong
+    val y = N.zipWithIndex.filter(v => v._2 % 2 == 1).map(_._1).mkString.toLong
+
+    println(x * y)
+  }
+
+  def selectMulOther = {
+    val in = new java.util.Scanner(System.in)
+    val N = in.next
+
+    def separate(list: List[List[Int]], l: Long, r: Long, diff: Boolean): Long = list match {
+      case Nil => l * r
+      case List(ll, rr) :: xs =>
+        separate(xs, l * 10 + (if (diff) rr else ll), r * 10 + (if (diff) ll else rr), diff || ll > rr)
     }
   }
 
