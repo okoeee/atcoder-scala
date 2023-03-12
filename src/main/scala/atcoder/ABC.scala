@@ -369,4 +369,58 @@ object ABC {
     scores.count(_ < P)
   }
 
+  def swissSystemTournament = {
+    val sc = new java.util.Scanner(System.in)
+    val N, M = sc.nextInt
+
+    // 初期化
+    case class Player(num: Int, var score: Int)
+    val gcpMap = Map("G" -> 1, "C" -> 2, "P" -> 3)
+    val inputGcpList = List.fill(2 * N)(sc.next) // じゃんけんのリスト
+    var playerList = (1 to 2 * N).map(i => Player(i, 0)).toArray // (番号, 勝ち負け)のリスト
+
+    def calc(m: Int) = {
+      // ソート
+      val sortedList = playerList.sortBy(p => p.score)
+      // 対戦リストの作成
+      val matchList = sortedList.grouped(2)
+      // 対戦
+      matchList.foreach { x =>
+        val aNum = x(0).num
+        val bNum = x(1).num
+
+        // じゃんけんの手を取得
+        val aHand = inputGcpList(aNum - 1).charAt(m)
+        val bHand = inputGcpList(bNum - 1).charAt(m)
+
+        judgeAndUpdateScore(aNum - 1, aHand, bNum - 1, bHand)
+      }
+
+    }
+
+    def judgeAndUpdateScore(aNum: Int, aHand: Char, bNum: Int, bHand: Char) = {
+      val gcpNumA = gcpMap.get(aHand.toString)
+      val gcpNumB = gcpMap.get(bHand.toString)
+
+      for (
+        i <- gcpNumA;
+        j <- gcpNumB
+      ) {
+        val diff = j - i
+        // aが勝ち aに
+        if (diff == 1 || diff == -2) {
+          playerList(aNum).score = playerList(aNum).score - 1
+        } else if (diff == -1 || diff == 2) {
+          playerList(bNum).score = playerList(bNum).score - 1
+        }
+      }
+
+    }
+
+    (0 to M - 1).foreach(calc(_))
+
+    playerList.sortBy(p => p.score).foreach(p => println(p.num))
+
+  }
+
 }
