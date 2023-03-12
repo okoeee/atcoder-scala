@@ -423,4 +423,30 @@ object ABC {
 
   }
 
+  def swissSystemTournamentOther = {
+    val in = new java.util.Scanner(System.in)
+    val N, M = in.next
+    val players = (1 to 2 * N).map((0, _)).toList
+    val hands = Array.fill(2 * N)(in.next)
+
+    def round(ps: List[(Int, Int)], i: Int): List[(Int, Int)] = {
+      if (i == M) ps
+      else {
+        val next = ps.grouped(2).flatMap { case List((lp, li), (rp, ri)) =>
+          val lh = hands(li - 1).charAt(i)
+          val rh = hands(ri - 1).charAt(i)
+          List((lp + judge(lh, rh), li), (rp + judge(rh, lh), ri))
+        }
+        round(next.toList.sorted, i + 1)
+      }
+    }
+
+    def judge(l: Char, r: Char) = (l, r) match {
+      case ('G', 'C') | ('C', 'P') | ('P', 'G') => -1
+      case _ => 0
+    }
+
+    println(round(players, 0))
+  }
+
 }
