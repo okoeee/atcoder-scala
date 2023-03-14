@@ -430,4 +430,46 @@ object ABC {
     else println("No")
   }
 
+  def stringShifting = {
+
+    val S = io.StdIn.readLine
+    val arrString = S.split("").toList
+
+    def calc(i: Int, resultList: List[List[String]]): List[List[String]] = {
+      if (i > S.length - 1) resultList
+      else {
+        val list = resultList.last
+        val head = list.head
+        val tail = list.tail
+        val newList = tail :+ head
+        calc(i + 1, resultList :+ newList)
+      }
+    }
+
+    val shiftedList = calc(1, List(arrString)).map(_.mkString).sorted
+    println(shiftedList.head)
+    print(shiftedList.last)
+
+  }
+
+  def stringShiftingOther = {
+    val in = new java.util.Scanner(System.in)
+    val S = in.next
+    val ss = (1 to S.size).map { i => S.drop(i) + S.take(i) }
+    println(ss.min)
+    println(ss.max)
+  }
+
+  def stringShiftingOther2 = {
+    val sc = new java.util.Scanner(System.in)
+    val s = sc.next
+
+    def ans(tmp: String, list: List[String]): List[String] = {
+      tmp.tail + tmp.head match {
+        case str if str == s => s +: list
+        case str => ans(str, str +: list)
+      }
+    }
+  }
+
 }
