@@ -472,4 +472,38 @@ object ABC {
     }
   }
 
+  def doukasen = {
+    val N = io.StdIn.readInt
+    val abList = List.fill(N)(io.StdIn.readLine.split(" ").map(_.toDouble))
+    val tList = abList.map { case Array(a: Double, b: Double) => a / b }
+    val time = tList.sum / 2
+
+    def calc(i: Int, tempT: Double, tempD: Double): Double = {
+      val t = tempT + tList(i)
+      val d = tempD + abList(i)(0)
+      if (t >= time) tempD + (time - tempT) * abList(i)(1)
+      else {
+        calc(i + 1, t, d)
+      }
+    }
+
+    val result = calc(0, 0, 0)
+    println(result)
+  }
+
+  def doukasenOther = {
+    val in = new java.util.Scanner(System.in)
+    val N = in.nextInt
+    val fuses = List.fill(N)((in.nextDouble, in.nextDouble))
+    val half = fuses.map{case(a,b) => a/b}.sum / 2
+
+    def search(fs: List[(Double, Double)], t: Double, x: Double): Double = fs match {
+      case (a, b) :: xs =>
+        val tt = a / b
+        if(tt + t >= half) x + b * (half - t)
+        else search(xs, t + tt, x + a)
+      case _ => 0.0
+    }
+  }
+
 }
