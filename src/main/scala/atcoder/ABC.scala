@@ -495,15 +495,45 @@ object ABC {
     val in = new java.util.Scanner(System.in)
     val N = in.nextInt
     val fuses = List.fill(N)((in.nextDouble, in.nextDouble))
-    val half = fuses.map{case(a,b) => a/b}.sum / 2
+    val half = fuses.map { case (a, b) => a / b }.sum / 2
 
     def search(fs: List[(Double, Double)], t: Double, x: Double): Double = fs match {
       case (a, b) :: xs =>
         val tt = a / b
-        if(tt + t >= half) x + b * (half - t)
+        if (tt + t >= half) x + b * (half - t)
         else search(xs, t + tt, x + a)
       case _ => 0.0
     }
+  }
+
+  def tires = {
+    val S = io.StdIn.readLine
+    println({
+      if (S.endsWith("er")) "er"
+      else if (S.endsWith("ist")) "ist"
+    })
+  }
+
+  def mongeness = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val A = List.fill(h)(io.StdIn.readLine.split(" ").map(_.toInt))
+
+    val b =
+      for (
+        i1 <- 0 to w - 2;
+        i2 <- i1 + 1 to w - 1;
+        j1 <- 0 to h - 2;
+        j2 <- j1 + 1 to h - 1
+      ) yield {
+        val r = A(j1)(i1) + A(j2)(i2) <= A(j1)(i2) + A(j2)(i1)
+        r
+      }
+
+    println({
+      if (b.contains(false)) "No"
+      else "Yes"
+    })
+
   }
 
 }
