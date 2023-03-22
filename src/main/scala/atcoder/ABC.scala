@@ -536,4 +536,26 @@ object ABC {
 
   }
 
+  def triangle = {
+    val n = io.StdIn.readInt
+    val areaResult = List.fill(n)(io.StdIn.readLine.split(" ").map(_.toInt)).combinations(3).map { c =>
+      val originB = Array(c(1)(0) - c(0)(0), c(1)(1) - c(0)(1))
+      val originC = Array(c(2)(0) - c(0)(0), c(2)(1) - c(0)(1))
+      Math.abs(originB(0) * originC(1) - originC(0) * originB(1)) / 2
+    }
+    println(areaResult.count(_ > 0))
+  }
+
+  def triangleOther = {
+    val N = io.StdIn.readInt
+    val dots = List.fill(N)(io.StdIn.readLine.split(" ").map(_.toInt))
+    val result = (for (
+      i <- 0 to N - 1;
+      j <- i + 1 to N - 1;
+      k <- j + 1 to N - 1
+      if (Math.abs((dots(i)(0) - dots(k)(0)) * (dots(j)(1) - dots(k)(1)) - (dots(j)(0) - dots(k)(0)) * (dots(i)(1) - dots(k)(1))) > 0)
+    ) yield 1).sum
+    println(result)
+  }
+
 }
