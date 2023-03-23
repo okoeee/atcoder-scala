@@ -558,4 +558,15 @@ object ABC {
     println(result)
   }
 
+  def minMaxPair = {
+    val N = io.StdIn.readInt
+    val list = io.StdIn.readLine.split(" ").map(_.toInt)
+    val result = (for (
+      i <- 0 to N - 1;
+      j <- i + 1 to N - 1
+      if (Math.min(list(i), list(j)) == i + 1 && Math.max(list(i), list(j)) == j + 1)
+    ) yield 1).sum
+    println(result)
+  }
+
 }
