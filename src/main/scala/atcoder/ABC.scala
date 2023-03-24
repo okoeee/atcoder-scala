@@ -612,4 +612,17 @@ object ABC {
     println(n)
   }
 
+  def ancestorOther = {
+    val N = io.StdIn.readInt
+    val p = 0 +: 0 +: io.StdIn.readLine
+
+    var crr = N
+    var cnt = 0
+    while (crr != 1) {
+      crr = p(crr)
+      cnt = cnt + 1
+    }
+    println(cnt)
+  }
+
 }
