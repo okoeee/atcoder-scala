@@ -591,4 +591,11 @@ object ABC {
     })
   }
 
+  def fullHouseOther = {
+    val input = io.StdIn.readLine.split(" ").map(_.toInt).sorted
+    println({
+      if ((input(0) == input(2) && input(3) == input(4)) || (input(0) == input(1) && input(2) == input(4))) "Yes" else "No"
+    })
+  }
+
 }
