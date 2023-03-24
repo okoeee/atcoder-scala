@@ -584,4 +584,11 @@ object ABC {
     println(ans + a)
   }
 
+  def fullHouse = {
+    val input = io.StdIn.readLine.split(" ").map(_.toInt)
+    println({
+      if (input.toSet.size == 2 && input.filter(p => p == input(0)).length >= 2) "Yes" else "No"
+    })
+  }
+
 }
