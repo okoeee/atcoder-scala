@@ -569,4 +569,19 @@ object ABC {
     println(result)
   }
 
+  def minMaxPairOther = {
+    val N = io.StdIn.readInt
+    val list = -1 +: io.StdIn.readLine.split(" ").map(_.toInt)
+
+    val orderdCount = list.zipWithIndex.filter { case (v, i) => v == i }.size
+    val ans = orderdCount * (orderdCount - 1) / 2
+
+    val a = (for (i <- 1 to N) yield {
+      val j = list(i)
+      if (i < j && list(j) == i) 1 else 0
+    }).sum
+
+    println(ans + a)
+  }
+
 }
