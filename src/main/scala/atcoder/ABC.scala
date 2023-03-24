@@ -614,7 +614,7 @@ object ABC {
 
   def ancestorOther = {
     val N = io.StdIn.readInt
-    val p = 0 +: 0 +: io.StdIn.readLine
+    val p = 0 +: 0 +: io.StdIn.readLine.split(" ").map(_.toInt)
 
     var crr = N
     var cnt = 0
@@ -623,6 +623,12 @@ object ABC {
       cnt = cnt + 1
     }
     println(cnt)
+  }
+
+  def monotonicallyIncreasing = {
+    val Array(n, m) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val l = (m to 1 by -1).foldLeft(List[Int]())((acc, x) => x +: acc)
+    l.combinations(n).foreach(v => println(v.mkString(" ")))
   }
 
 }
