@@ -598,4 +598,18 @@ object ABC {
     })
   }
 
+  def ancestor = {
+    val N = io.StdIn.readInt
+    val p = -1 +: io.StdIn.readLine.split(" ").map(_.toInt)
+
+    var k = N - 1
+    var n = 0
+    while (k != 0) {
+      k = p(k)
+      k = k - 1
+      n = n + 1
+    }
+    println(n)
+  }
+
 }
