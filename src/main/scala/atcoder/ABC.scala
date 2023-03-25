@@ -673,4 +673,24 @@ object ABC {
     println(if (Math.max(Math.abs(r - 8), Math.abs(c - 8)) % 2 == 1) "black" else "white")
   }
 
+  def matrixReducing = {
+    val Array(h1, w1) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val A = List.fill(h1)(io.StdIn.readLine.split(" ").map(_.toInt)).toArray
+    val Array(h2, w2) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val B = List.fill(h2)(io.StdIn.readLine.split(" ").map(_.toInt)).toArray
+
+    val a = A.map { line =>
+      // Bの要素をループで
+      val index =
+        for (
+          i <- 0 to h2 - 1;
+          j <- 0 to w2 - 1
+        ) yield line.indexWhere(_ == B(i)(j))
+      index
+    }
+
+    a.foreach(p => println(p.mkString(",")))
+
+  }
+
 }
