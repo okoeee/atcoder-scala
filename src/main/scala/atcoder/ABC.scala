@@ -662,4 +662,10 @@ object ABC {
 
   }
 
+  def atcoderSubstr = {
+    val a = "atcoder"
+    val Array(l, r) = io.StdIn.readLine.split(" ").map(_.toInt)
+    println(a.substring(l - 1, r))
+  }
+
 }
