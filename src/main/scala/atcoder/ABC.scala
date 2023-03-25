@@ -714,4 +714,89 @@ object ABC {
 
   }
 
+  def probablyEnglish = {
+    val N = io.StdIn.readInt
+    val words = io.StdIn.readLine.split(" ")
+    val target = Set("and", "not", "that", "the", "you")
+    println({
+      if (words.exists(target.contains)) "Yes" else "No"
+    })
+  }
+
+  def bombs = {
+    val Array(r, c) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val b = List.fill(r)(io.StdIn.readLine.toArray)
+
+    def isIn(x: Int, y: Int): Boolean = x >= 0 && x < r && y >= 0 && y < c
+
+    for {
+      x <- 0 until r
+      y <- 0 until c
+      if (b(x)(y).isDigit)
+    } {
+      val p = b(x)(y).asDigit
+      for {
+        dx <- -p to p
+        dy <- -p to p
+        if Math.abs(dx) + Math.abs(dy) <= p
+        nx = x + dx
+        ny = y + dy
+        if isIn(nx, ny)
+      } {
+        b(nx)(ny) = '.'
+      }
+    }
+
+    b.foreach(r => println(r.mkString))
+  }
+
+  def bombsOther = {
+    val Array(r, c) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val b = List.fill(r)(io.StdIn.readLine.toArray)
+
+    def isIn(x: Int, y: Int): Boolean = x >= 0 && x < r && y >= 0 && y < c
+
+    val bombs = for {
+      x <- 0 until r
+      y <- 0 until c
+      if b(x)(y).isDigit
+    } yield (x, y, b(x)(y).asDigit)
+
+    for {
+      (x, y, p) <- bombs
+      dx <- -p to p
+      dy <- -p to p
+      if Math.abs(dx) + Math.abs(dy) <= p
+      nx = x + dx
+      ny = y + dy
+      if isIn(nx, ny)
+    } {
+      b(nx)(ny) = '.'
+    }
+
+    b.foreach(r => println(r.mkString))
+  }
+
+  def socks = {
+    val N = io.StdIn.readInt
+    val arr = io.StdIn.readLine.split(" ").map(_.toInt)
+    println(arr.groupBy(identity).mapValues(_.length).values.map(_ / 2).sum)
+  }
+
+  def threeDaysAgo = {
+    val S = io.StdIn.readLine
+    val a = for {
+      l <- 0 to S.length - 1
+      r <- l to S.length
+      if (r - l) % 2 == 0
+    } yield {
+      val cutS = S.substring(l, r)
+      val (a, b) = cutS.splitAt(cutS.length / 2)
+      val countA = a.groupBy(identity).mapValues(_.length)
+      val countB = b.groupBy(identity).mapValues(_.length)
+      if (countA == countB) 1 else 0
+    }
+    println(a.sum)
+  }
+
 }
