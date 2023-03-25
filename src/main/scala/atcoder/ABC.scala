@@ -668,4 +668,9 @@ object ABC {
     println(a.substring(l - 1, r))
   }
 
+  def niceGrid = {
+    val Array(r, c) = io.StdIn.readLine.split(" ").map(_.toInt)
+    println(if (Math.max(Math.abs(r - 8), Math.abs(c - 8)) % 2 == 1) "black" else "white")
+  }
+
 }
