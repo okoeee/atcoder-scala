@@ -631,4 +631,35 @@ object ABC {
     l.combinations(n).foreach(v => println(v.mkString(" ")))
   }
 
+  def leftRightOperation = {
+    val Array(n, l, r) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val p = io.StdIn.readLine.split(" ").map(_.toInt)
+    val op = p.clone
+    var initR = p.sum
+
+    def opLeft(i: Int, list: Array[Int], preSum: Int): Int = {
+      if (i > list.length - 1) preSum
+      else {
+        list(i) = l
+        val newPreSum = if (list.sum < preSum) list.sum else preSum
+        opLeft(i + 1, list, newPreSum)
+      }
+    }
+    def opRight(i: Int, list: Array[Int], preSum: Int): Int = {
+      if (i < 0) preSum
+      else {
+        list(i) = r
+        val newPreSum = if (list.sum < preSum) list.sum else preSum
+        opRight(i - 1, list, newPreSum)
+      }
+    }
+
+    val resultL = opLeft(0, p, initR)
+    val resultR = opRight(p.length - 1, p, initR)
+    val onlyR = opRight(op.length - 1, op, initR)
+
+    println(resultL min resultR min onlyR)
+
+  }
+
 }
