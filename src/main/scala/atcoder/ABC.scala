@@ -693,4 +693,25 @@ object ABC {
 
   }
 
+  def matrixReducingOther = {
+    val Array(h1, w1) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val A = List.fill(h1)(io.StdIn.readLine.split(" ").map(_.toInt)).toArray
+    val Array(h2, w2) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val B = List.fill(h2)(io.StdIn.readLine.split(" ").map(_.toInt)).toArray
+
+    val as =
+      for (
+        selectH <- (0 to h1).combinations(h2);
+        selectW <- (0 to w1).combinations(w2)
+      ) yield {
+        for (
+          i <- 0 to h2;
+          j <- 0 to w2
+          if (B(i)(j) != A(selectH(i))(selectW(j)))
+        ) yield false
+      }
+    as.foreach(p => p.mkString(","))
+
+  }
+
 }
