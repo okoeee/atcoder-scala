@@ -723,6 +723,16 @@ object ABC {
     })
   }
 
+  def probablyEnglishOther = {
+    val N = io.StdIn.readInt
+    val words = io.StdIn.readLine.split(" ")
+    val target = Set("and", "not", "that", "the", "you")
+    println({
+      if (words.exists(p => target.contains(p))) "Yes" else "No"
+
+    })
+  }
+
   def bombs = {
     val Array(r, c) = io.StdIn.readLine.split(" ").map(_.toInt)
     val b = List.fill(r)(io.StdIn.readLine.toArray)
