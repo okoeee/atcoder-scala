@@ -820,12 +820,18 @@ object ABC {
     println(arr.groupBy(identity).mapValues(_.length).values.map(_ / 2).sum)
   }
 
+  def socksOther = {
+    val N = io.StdIn.readInt
+    val r = io.StdIn.readLine.split(" ").map(_.toInt).groupBy(identity).map { case (_, value) => value.length / 2 }.sum
+    println(r)
+  }
+
   def threeDaysAgo = {
     val S = io.StdIn.readLine
     val a = for {
-      l <- 0 to S.length - 1
+      l <- 0 until S.length
       r <- l to S.length
-      if (r - l) % 2 == 0
+      if (r - l) % 2 == 0 //文字の長さが偶数のときしか繰り返すことができないため
     } yield {
       val cutS = S.substring(l, r)
       val (a, b) = cutS.splitAt(cutS.length / 2)
