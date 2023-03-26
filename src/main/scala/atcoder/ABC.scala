@@ -787,6 +787,33 @@ object ABC {
     b.foreach(r => println(r.mkString))
   }
 
+  def bombsOtherOfm = {
+    val Array(r, c) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val B = Array.fill(r)(io.StdIn.readLine.toArray)
+
+    // 爆弾の位置を求める
+    val bombs = for {
+      i <- 0 to r - 1
+      j <- 0 to c - 1
+      if B(i)(j).isDigit
+    } yield (i, j, B(i)(j) - '0')
+
+    // 爆発させ2次元配列を変更
+    for {
+      (x, y, p) <- bombs
+      dx <- -p to p
+      dy <- -p to p
+      if Math.abs(dx) + Math.abs(dy) <= p // マンハッタン距離の制限
+      if x + dx >= 0 && x + dx <= r - 1 && y + dy >= 0 && y + dy <= c - 1 // 枠からはみ出ないように
+    } {
+      val nx = x + dx
+      val ny = y + dy
+      B(nx)(ny) = '.'
+    }
+
+    B.foreach(p => println(p.mkString))
+  }
+
   def socks = {
     val N = io.StdIn.readInt
     val arr = io.StdIn.readLine.split(" ").map(_.toInt)
