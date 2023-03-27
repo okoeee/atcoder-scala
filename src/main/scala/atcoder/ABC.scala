@@ -831,7 +831,7 @@ object ABC {
     val a = for {
       l <- 0 until S.length
       r <- l to S.length
-      if (r - l) % 2 == 0 //文字の長さが偶数のときしか繰り返すことができないため
+      if (r - l) % 2 == 0 // 文字の長さが偶数のときしか繰り返すことができないため
     } yield {
       val cutS = S.substring(l, r)
       val (a, b) = cutS.splitAt(cutS.length / 2)
@@ -840,6 +840,34 @@ object ABC {
       if (countA == countB) 1 else 0
     }
     println(a.sum)
+  }
+
+  def redoctaSwap = {
+    val S = io.StdIn.readLine.split("")
+    val target = "atcoder"
+    var count = 0
+
+    def swap(i: Int, j: Int) = {
+      val temp = S(i)
+      S(i) = S(j)
+      S(j) = temp
+      count = count + 1
+    }
+
+    target.zipWithIndex.foreach { case (v, index) =>
+      val iInS = S.indexWhere(_ == s"$v")
+      val diff = iInS - index
+      if (diff > 0) {
+        for (i <- iInS until index by -1) {
+          swap(i, i - 1)
+        }
+      } else if (diff < 0) {
+        for (i <- index until iInS) {
+          swap(i, i + 1)
+        }
+      }
+    }
+    println(count)
   }
 
 }
