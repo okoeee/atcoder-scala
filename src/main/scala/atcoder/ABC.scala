@@ -886,4 +886,16 @@ object ABC {
 
   }
 
+  def apple = {
+    val Array(x, y, z) = io.StdIn.readLine.split(" ").map(_.toInt)
+    if (x > y / 3) {
+      val quotient = z / 3
+      val remainder = z % 3
+      println(quotient * y + remainder * x)
+    } else {
+      println(z * x)
+    }
+
+  }
+
 }
