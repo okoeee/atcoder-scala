@@ -870,4 +870,20 @@ object ABC {
     println(count)
   }
 
+  def redoctaSwapOther = {
+    val S = io.StdIn.readLine
+    val target = "atcoder"
+    val originM = target.zipWithIndex.toMap
+    val input = S.map(v => originM(v))
+
+    val r = (for {
+      i <- 0 until target.size
+      j <- i until target.size
+      if input(i) > input(j)
+    } yield 1).sum
+
+    println(r)
+
+  }
+
 }
