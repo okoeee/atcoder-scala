@@ -922,4 +922,14 @@ object ABC {
     println(calc(1))
   }
 
+  def exploreOther = {
+    val Array(n, m, t) = io.StdIn.readLine.split(" ").map(_.toLong)
+    val A = io.StdIn.readLine.split(" ").map(_.toLong)
+    (0 until m.toInt).foreach { i =>
+      val Array(x, y) = io.StdIn.readLine.split(" ").map(_.toLong)
+      A(x.toInt - 1) -= y
+    }
+    println(if (A.scanLeft(t)((acc, x) => acc - x).forall(_ > 0)) "Yes" else "No")
+  }
+
 }
