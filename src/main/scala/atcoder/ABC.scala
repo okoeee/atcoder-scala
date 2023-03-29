@@ -898,4 +898,28 @@ object ABC {
 
   }
 
+  def explore = {
+    val Array(n, m, t) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val A = io.StdIn.readLine.split(" ").map(_.toInt)
+    val X = List.fill(m) {
+      val Array(x, y) = io.StdIn.readLine.split(" ").map(_.toInt)
+      (x, y)
+    }
+
+    var mutableT = t
+
+    def calc(i: Int): String = {
+      if (i == n) "Yes"
+      else {
+        X.find(innerList => innerList._1 == i) foreach { x => mutableT = mutableT + x._2 }
+        val needT = mutableT - A(i - 1)
+        if (needT <= 0) "No"
+        else {
+          calc(i + 1)
+        }
+      }
+    }
+    println(calc(1))
+  }
+
 }
