@@ -923,7 +923,7 @@ object ABC {
   }
 
   def exploreOther = {
-    val Array(n, m, t) = io.StdIn.readLine.split(" ").map(_.toLong)
+    val Array(_, m, t) = io.StdIn.readLine.split(" ").map(_.toLong)
     val A = io.StdIn.readLine.split(" ").map(_.toLong)
     (0 until m.toInt).foreach { i =>
       val Array(x, y) = io.StdIn.readLine.split(" ").map(_.toLong)
