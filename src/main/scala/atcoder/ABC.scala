@@ -932,4 +932,25 @@ object ABC {
     println(if (A.scanLeft(t)((acc, x) => acc - x).forall(_ > 0)) "Yes" else "No")
   }
 
+  def beltConveyorRecursiveVer = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val G = Array.fill(h)(io.StdIn.readLine.split(""))
+    def calc(i: Int, j: Int, b: Int): Either[Int, (Int, Int)] = {
+      if (b == 1 && i == 1 && j == 1) Left(-1)
+      else {
+        G(i - 1)(j - 1) match {
+          case "U" if i != 1 => calc(i - 1, j, 1)
+          case "D" if i != h => calc(i + 1, j, 1)
+          case "L" if j != 1 => calc(i, j - 1, 1)
+          case "R" if j != w => calc(i, j + 1, 1)
+          case _ => Right(i, j)
+        }
+      }
+    }
+    calc(1, 1, 0) match {
+      case Right(x) => println(s"${x._1} ${x._2}")
+      case Left(x) => println(x)
+    }
+  }
+
 }
