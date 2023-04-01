@@ -966,4 +966,13 @@ object ABC {
     println(a)
   }
 
+  def irohaAndHaikuOther = {
+    val Array(n, p, q, r) = io.StdIn.readLine.split(" ").map(_.toLong)
+    val A = io.StdIn.readLine.split(" ").map(_.toLong)
+    val cSum = A.scanLeft(0L)(_ + _).toSet
+
+    println(if (cSum.exists { v => cSum(v + p) && cSum(v + p + q) && cSum(v + p + q + r) }) "Yes" else "No")
+
+  }
+
 }
