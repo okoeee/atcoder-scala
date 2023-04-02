@@ -975,4 +975,9 @@ object ABC {
 
   }
 
+  def middleLetter = {
+    val S = io.StdIn.readLine
+    println(S.charAt(S.length / 2))
+  }
+
 }
