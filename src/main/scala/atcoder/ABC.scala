@@ -980,4 +980,12 @@ object ABC {
     println(S.charAt(S.length / 2))
   }
 
+  def moduloNumber = {
+    val N = io.StdIn.readLong
+    val divider = 998244353L
+    var a = N % divider
+    if (a < 0) a += divider
+    println(a)
+  }
+
 }
