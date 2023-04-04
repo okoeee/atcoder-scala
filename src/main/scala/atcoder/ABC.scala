@@ -954,7 +954,7 @@ object ABC {
   }
 
   def irohaAndHaiku = {
-    val Array(n, p, q, r) = io.StdIn.readLine.split(" ").map(_.toLong)
+    val Array(_, p, q, r) = io.StdIn.readLine.split(" ").map(_.toLong)
     val A = io.StdIn.readLine.split(" ").map(_.toLong)
     val cSum = A.scanLeft(0L)(_ + _).toSet
 
@@ -967,7 +967,7 @@ object ABC {
   }
 
   def irohaAndHaikuOther = {
-    val Array(n, p, q, r) = io.StdIn.readLine.split(" ").map(_.toLong)
+    val Array(_, p, q, r) = io.StdIn.readLine.split(" ").map(_.toLong)
     val A = io.StdIn.readLine.split(" ").map(_.toLong)
     val cSum = A.scanLeft(0L)(_ + _).toSet
 
