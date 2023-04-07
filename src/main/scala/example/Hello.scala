@@ -7,9 +7,11 @@ object Main {
   case class Box(row: Int, col: Int, num: Int)
 
   private def validateInputs(length: Int, direction: Int, row: Array[Int], col: Array[Int], num: Array[Int]): Either[String, Unit] = {
-    if (length < 1) Left("lengthの値が不正です")
+    if (length < 1 || length > 20) Left("lengthの値が不正です")
+    else if (num.max > length) Left("ダンボールの高さが最大値を超えています")
     else if (direction < 1 || direction > 4) Left("directionの値が不正です")
     else if (row.length != col.length || row.length != num.length) Left("row, col, numの配列の数が一致しません")
+    else if (row.length > length) Left("row, colの範囲がlengthの値を超えています")
     else Right()
   }
 
@@ -73,11 +75,11 @@ object Main {
   def main(args: Array[String]): Unit = {
     val length = 6
     val direction = 2
-    val row = Array(2, 2)
-    val col = Array(1, 4)
-    val num = Array(3, 5)
+    val row = Array(0, 2)
+    val col = Array(2, 2)
+    val num = Array(3, 1)
     solution(length, direction, row, col, num)
     // solution(2, 2, Array(0, 1), Array(1, 1), Array(1, 1))
-    // solution(2, 3, Array(0, 0), Array(0, 1), Array(1, 3))
+    // solution(2, 4, Array(0, 0), Array(0, 1), Array(2, 1))
   }
 }
