@@ -51,24 +51,13 @@ object Main {
           diff <- 0 to num
           if isInRange(length, direction, row, col, diff)
         } {
-          val (diffRow, diffCol, preNum) = direction match {
-            case 1 =>
-              val diffRow = row + diff
-              val preNum = room(diffRow)(col)
-              (diffRow, col, preNum)
-            case 2 =>
-              val diffCol = col - diff
-              val preNum = room(row)(diffCol)
-              (row, diffCol, preNum)
-            case 3 =>
-              val diffRow = row - diff
-              val preNum = room(diffRow)(col)
-              (diffRow, col, preNum)
-            case 4 =>
-              val diffCol = col + diff
-              val preNum = room(row)(diffCol)
-              (row, diffCol, preNum)
+          val (diffRow, diffCol) = direction match {
+            case 1 => (row + diff, col)
+            case 2 => (row, col - diff)
+            case 3 => (row - diff, col)
+            case 4 => (row, col + diff)
           }
+          val preNum = room(diffRow)(diffCol)
           if (diff == 0 && preNum == num) room(diffRow)(diffCol) = 0
           else if (preNum == 0) room(diffRow)(diffCol) = 1
           else if (preNum > 0 && preNum < num + 1 - diff && boxes.exists(b => b.row == diffRow && b.col == diffCol)) room(diffRow)(diffCol) = 1 + preNum
@@ -83,8 +72,9 @@ object Main {
     val row = Array(0, 2)
     val col = Array(2, 2)
     val num = Array(3, 1)
-    solution(length, direction, row, col, num)
-    // solution(2, 2, Array(0, 1), Array(1, 1), Array(1, 1))
+    // solution(length, direction, row, col, num)
+    solution(2, 2, Array(0, 1), Array(1, 1), Array(1, 1))
+    solution(6, 1, Array(0, 2), Array(2, 2), Array(3, 1))
     // solution(2, 4, Array(0, 0), Array(0, 1), Array(2, 1))
   }
 }
