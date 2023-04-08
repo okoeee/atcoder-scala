@@ -4,6 +4,11 @@ import atcoder.{ABC, ABC212, BeginnerContest, BeginnersSelection}
 
 object Main {
 
+  // 実行環境
+  // Scala 2.12.8
+  // openjdk 11.0.16.1
+  // sbt 1.2.7
+
   case class Box(row: Int, col: Int, num: Int)
 
   private def validateInputs(length: Int, direction: Int, row: Array[Int], col: Array[Int], num: Array[Int]): Either[String, Unit] = {
@@ -38,7 +43,7 @@ object Main {
       case Left(message) => println(message)
       case Right(_) =>
         val room = Array.fill(length, length)(0)
-        val boxes = (0 until row.length).map(i => Box(row(i), col(i), num(i)))
+        val boxes = row.indices.map(i => Box(row(i), col(i), num(i)))
         boxes.foreach { case Box(r, c, n) => room(r)(c) = n }
 
         for {
