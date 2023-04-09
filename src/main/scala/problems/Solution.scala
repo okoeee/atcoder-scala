@@ -10,10 +10,10 @@ object Solution {
 
   private def validateInputs(length: Int, direction: Int, row: Array[Int], col: Array[Int], num: Array[Int]): Either[String, Unit] = {
     if (length < 1 || length > 20) Left("lengthの値が不正です")
+    else if ((row ++ col).exists(_ > length - 1)) Left("rowもしくはcolの値がlengthの値を超えています")
     else if (num.max > length) Left("ダンボールの高さが最大値を超えています")
     else if (direction < 1 || direction > 4) Left("directionの値が不正です")
     else if (row.length != col.length || row.length != num.length) Left("row, col, numの配列の数が一致しません")
-    else if (row.length > length) Left("row, colの範囲がlengthの値を超えています")
     else Right()
   }
 
@@ -39,10 +39,14 @@ object Solution {
     validateInputs(length, direction, row, col, num) match {
       case Left(message) => println(message)
       case Right(_) =>
+        // 2次元配列を0で初期化
         val room = Array.fill(length, length)(0)
+        // 処理をする際、分かりやすくなるようにケースクラスに代入
         val boxes = row.indices.map(i => Box(row(i), col(i), num(i)))
+        // 影の高さを算出する際、もとから存在するダンボールの高さの値が必要なため、roomに代入
         boxes.foreach { case Box(r, c, n) => room(r)(c) = n }
 
+        // ダンボールがある位置とその高さをもとに影の高さを算出し、2次元配列に代入
         for {
           Box(row, col, num) <- sortBoxesByDirection(direction, boxes)
           diff <- 0 to num
@@ -57,8 +61,9 @@ object Solution {
           val preNum = room(diffRow)(diffCol)
           if (diff == 0 && preNum == num) room(diffRow)(diffCol) = 0
           else if (preNum == 0) room(diffRow)(diffCol) = 1
-          else if (preNum > 0 && preNum < num + 1 - diff && boxes.exists(b => b.row == diffRow && b.col == diffCol)) room(diffRow)(diffCol) = 1 + preNum
+          else if (preNum < num + 1 - diff && boxes.exists(b => b.row == diffRow && b.col == diffCol)) room(diffRow)(diffCol) = 1 + preNum
         }
+
         room.foreach(row => println(row.mkString(" ")))
     }
   }

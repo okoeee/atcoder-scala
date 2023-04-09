@@ -28,9 +28,9 @@ object FutureSample {
 //    case ex: Throwable => println(ex)
 //  }
 
-  def get(url: String): Future[BufferedSource] = Future(Source.fromURL(url))
+  def get(url: String): Future[BufferedSource] = Future { Source.fromURL(url) }
 
-  //実行のとき
+  // 実行のとき
 //  try {
 //    val futureResult = FutureSample.get("https://scalamatsuri.org/en/")
 //    val result = Await.result(futureResult, Duration.Inf)

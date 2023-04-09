@@ -22,7 +22,6 @@ object Main {
     // solution(2, 4, Array(0, 0), Array(0, 1), Array(2, 1))
 
     println("input value")
-    ABC.moduloNumber
 
   }
 }
