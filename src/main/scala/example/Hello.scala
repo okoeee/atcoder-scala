@@ -23,7 +23,7 @@ object Main {
 
     // println("input value")
 
-    Monoxer.arrayChallengeOther(Array("B:-1", "A:1", "B:3", "A:5", "C:4"))
+    Monoxer.calcStock(Array(44, 30, 24, 32, 35, 30, 40, 38, 15))
 
   }
 }
