@@ -21,7 +21,9 @@ object Main {
     // Solution.solution(6, 1, Array(0, 2), Array(2, 2), Array(3, 1))
     // solution(2, 4, Array(0, 0), Array(0, 1), Array(2, 1))
 
-    println("input value")
+    // println("input value")
+
+    Monoxer.arrayChallenge(Array("B:-1", "A:1", "B:3", "A:5", "C:4"))
 
   }
 }
