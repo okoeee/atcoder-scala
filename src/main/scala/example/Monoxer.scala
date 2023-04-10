@@ -18,4 +18,20 @@ object Monoxer {
     }
   }
 
+  def arrayChallengeOther(strArr: Array[String]) = {
+    val r = strArr
+      .map { str =>
+        val Array(k, v) = str.split(":")
+        (k, v.toInt)
+      }
+      .groupBy(_._1)
+
+    val a = r.mapValues { arr =>
+      arr.map(v => v._2).sum
+    }
+
+    a.filter(_._2 != 0).toSeq.sorted.map { case (k, v) => println(s"$k:$v") }
+
+  }
+
 }

@@ -23,7 +23,7 @@ object Main {
 
     // println("input value")
 
-    Monoxer.arrayChallenge(Array("B:-1", "A:1", "B:3", "A:5", "C:4"))
+    Monoxer.arrayChallengeOther(Array("B:-1", "A:1", "B:3", "A:5", "C:4"))
 
   }
 }
