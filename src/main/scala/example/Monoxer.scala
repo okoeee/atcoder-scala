@@ -45,4 +45,22 @@ object Monoxer {
     println(result)
   }
 
+  // 関数MathChallenge(num)が、与えられた数字がフィボナッチ数列の一部である場合、文字列yesを返すようにします。
+  // この数列は次のように定義される： Fn＝Fn-1＋Fn-2、つまり、Fnを求めるには、前の2つの数字を足し算する。最初の2つの数字は0と1であり、次に1、2、3、5と続く。
+  // numがフィボナッチ数列でない場合は、no.という文字列を返す。
+  def isFibonacciSeq(num: Int) = {
+
+    def calc(preNum: Int, nextNum: Int): String = {
+      if (preNum == num) "yes"
+      else if (preNum > num) "no"
+      else {
+        calc(nextNum, preNum + nextNum)
+      }
+    }
+
+    val ans = calc(1, 1)
+    println(ans)
+
+  }
+
 }
