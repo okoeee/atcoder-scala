@@ -988,4 +988,10 @@ object ABC {
     println(a)
   }
 
+  def saturday = {
+    val S = io.StdIn.readLine
+    val weekDay = Array("Friday", "Thursday", "Wednesday", "Tuesday", "Monday")
+    println(weekDay.indexOf(S) + 1)
+  }
+
 }

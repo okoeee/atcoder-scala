@@ -21,9 +21,8 @@ object Main {
     // Solution.solution(6, 1, Array(0, 2), Array(2, 2), Array(3, 1))
     // solution(2, 4, Array(0, 0), Array(0, 1), Array(2, 1))
 
-    // println("input value")
-
-    Monoxer.isFibonacciSeq(233)
+    println("input value")
+    ABC.saturday
 
   }
 }
