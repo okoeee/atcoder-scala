@@ -23,4 +23,22 @@ object Sort {
     }
   }
 
+  def mergeSort(seq: Seq[Int]): Seq[Int] = {
+
+    def merge(left: Seq[Int], right: Seq[Int]): Seq[Int] = (left, right) match {
+      case (Nil, _) => right
+      case (_, Nil) => left
+      case (lHead :: lTail, rHead :: rTail) =>
+        if (lHead < rHead) lHead +: merge(lTail, right)
+        else rHead +: merge(left, rTail)
+    }
+
+    val n = seq.length / 2
+    if (n == 0) seq
+    else {
+      val (left, right) = seq.splitAt(n)
+      merge(mergeSort(left), mergeSort(right))
+    }
+  }
+
 }

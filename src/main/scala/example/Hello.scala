@@ -16,8 +16,8 @@ object Main {
     println("input value")
     // ABC.saturday
 
-    val seq = Sort.quickSortOther(Seq(8, 33, 1, 6, 2, 6, 22, 3, 5))
-    println(seq)
+    val seq = Sort.mergeSort(Seq(8, 33, 1, 6, 2, 6, 22, 3, 5))
+    // println(seq)
 
   }
 }
