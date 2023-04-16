@@ -41,4 +41,27 @@ object Sort {
     }
   }
 
+  def myFind(seq: Seq[Int], p: Int): Boolean = {
+    val sortedSeq = seq.sorted
+
+    def find(seq: Seq[Int]): Boolean = {
+      val n = seq.length / 2
+      if (n == 0) n == p
+      else {
+        val v = seq(n)
+        if (v == p) {
+          true
+        } else if (v < p) {
+          val (_, right) = seq.splitAt(n)
+          find(right)
+        } else {
+          val (left, _) = seq.splitAt(n)
+          find(left)
+        }
+      }
+    }
+
+    find(seq)
+  }
+
 }
