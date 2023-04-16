@@ -994,4 +994,28 @@ object ABC {
     println(weekDay.indexOf(S) + 1)
   }
 
+  def split = {
+    val arr = 0 +: io.StdIn.readLine.split("").map(_.toInt)
+    if (arr(1) == 1) println("No")
+    else {
+      val eArr = Array.ofDim[Boolean](7)
+      eArr(0) = arr(7) > 0
+      eArr(1) = arr(4) > 0
+      eArr(2) = arr(8) + arr(2) > 0
+      eArr(3) = arr(5) + arr(1) > 0
+      eArr(4) = arr(3) + arr(9) > 0
+      eArr(5) = arr(6) > 0
+      eArr(6) = arr(10) > 0
+      val rArr = for {
+        i <- 0 until eArr.length - 2
+        j <- i + 1 until eArr.length - 1
+        k <- j + 1 until eArr.length
+        if (eArr(i) == true && eArr(j) == false && eArr(k) == true)
+      } yield true
+      println({
+        if (rArr.contains(true)) "Yes" else "No"
+      })
+    }
+  }
+
 }
