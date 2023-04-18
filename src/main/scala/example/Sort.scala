@@ -1,4 +1,4 @@
-package sort
+package example
 
 object Sort {
 
@@ -62,6 +62,22 @@ object Sort {
     }
 
     find(seq)
+  }
+
+  def reviewQuickSort(seq: Seq[Int]): Seq[Int] = {
+    val l = seq.length
+    if (l <= 1) seq
+    else {
+      val n = scala.util.Random.nextInt(l)
+      val pivot = seq(n)
+      val (less, equal, greater) = seq.foldLeft(Seq[Int](), Seq[Int](), Seq[Int]()) { case ((less, equal, greater), elem) =>
+        if (elem == pivot) (less, elem +: equal, greater)
+        else if (elem < pivot) (elem +: less, equal, greater)
+        else (less, equal, elem +: greater)
+      }
+
+      reviewQuickSort(less) ++ equal ++ reviewQuickSort(greater)
+    }
   }
 
 }
