@@ -63,4 +63,12 @@ object Monoxer {
 
   }
 
+  def extractItem(items: Seq[Item], tags: Seq[String]): Seq[Item] = {
+    items.filter { item =>
+      tags.forall(v => item.tags.contains(v))
+    }
+  }
+
 }
+
+case class Item(tags: Seq[String])
