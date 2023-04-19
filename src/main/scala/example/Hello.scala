@@ -12,12 +12,8 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    // println("input value")
-    // ABC.split
-
-    println(Sort.reviewQuickSort(Seq(6, 3, 4, 1, 7, 5, 4, 1, 2, 2, 3)))
-
-    Seq(1,2,3).sorted
+    println("input value")
+    ABC.split
 
   }
 }
