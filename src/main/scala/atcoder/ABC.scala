@@ -1018,4 +1018,16 @@ object ABC {
     }
   }
 
+  def indexA = {
+    val Array(n, m) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val A = io.StdIn.readLine.split(" ").map(_.toInt)
+
+    val r = (for (i <- 0 to A.length + 1 - m) yield {
+      val slicedA = A.slice(i, i + m)
+      slicedA.zipWithIndex.map { case (v, i) => (i + 1) * v }.sum
+    }).max
+
+    println(r)
+  }
+
 }
