@@ -13,7 +13,7 @@ object Main {
   def main(args: Array[String]): Unit = {
 
     println("input value")
-    ABC.indexA
+    ABC.indexAOther
 
   }
 }

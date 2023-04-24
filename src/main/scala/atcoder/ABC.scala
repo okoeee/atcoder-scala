@@ -1030,4 +1030,17 @@ object ABC {
     println(r)
   }
 
+  def indexAOther = {
+    val Array(_, m) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val A = io.StdIn.readLine.split(" ").map(_.toLong)
+
+    val accA = A.scanLeft(0L)(_ + _)
+    val S1 = A.slice(0, m).zipWithIndex.map { case (v, i) => (i + 1) * v }.sum
+    val S2List = (0 until A.length - m).scanLeft(S1) { case (acc, x) =>
+      acc - (accA(x + m) - accA(x)) + m * A(x + m)
+    }
+    val r = S2List.max
+    println(r)
+  }
+
 }
