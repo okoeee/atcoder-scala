@@ -1043,4 +1043,8 @@ object ABC {
     println(r)
   }
 
+  def fiveIntegers = {
+    println(io.StdIn.readLine.split(" ").map(_.toInt).toSet.size)
+  }
+
 }
