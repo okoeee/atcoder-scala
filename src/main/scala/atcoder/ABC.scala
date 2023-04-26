@@ -1047,4 +1047,10 @@ object ABC {
     println(io.StdIn.readLine.split(" ").map(_.toInt).toSet.size)
   }
 
+  def prefix = {
+    val S = io.StdIn.readLine
+    val T = io.StdIn.readLine
+    println(if (S.length <= T.length && S.zipWithIndex.forall { case (p, i) => p == T(i) }) "Yes" else "No")
+  }
+
 }
