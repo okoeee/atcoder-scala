@@ -1053,4 +1053,10 @@ object ABC {
     println(if (S.length <= T.length && S.zipWithIndex.forall { case (p, i) => p == T(i) }) "Yes" else "No")
   }
 
+  def prefixOther = {
+    val S = io.StdIn.readLine
+    val T = io.StdIn.readLine
+    println(if (T.startsWith(S)) "Yes" else "No")
+  }
+
 }
