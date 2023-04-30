@@ -11,6 +11,7 @@ import scala.util.{Failure, Success}
 object Main {
   def main(args: Array[String]): Unit = {
     println("input value")
-    ABC.prefix
+    // ABC.prefix
+    dwango.pq1
   }
 }

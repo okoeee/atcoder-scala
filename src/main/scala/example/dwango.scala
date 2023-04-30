@@ -24,4 +24,22 @@ object dwango {
     }
   }
 
+  def p3 = {
+    val obj = List("a")
+    // パターンマッチにおいて、型変数を使用した場合、正しくパターンマッチが行われない
+    obj match {
+      case v: List[Int] => println("List[Int]") // ここの行が実行される
+      case v: List[String] => println("List[String]")
+    }
+  }
+
+  def pq1 = {
+    for (i <- 1 until 1000) {
+      val s = new scala.util.Random(new java.security.SecureRandom()).alphanumeric.take(5).toList match {
+        case List(a, b, c, d, e) => List(a, b, c, d, a).mkString
+      }
+      println(s)
+    }
+  }
+
 }
