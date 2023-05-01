@@ -42,4 +42,16 @@ object dwango {
     }
   }
 
+  class Point(val x: Int, val y: Int) {
+    def sum: Int = x + y
+  }
+  val p = new Point(2, 2)
+  val px = p.x
+
+  class SubPoint(_x: Int, _y: Int) {
+    val x = _x
+    val y = _y
+  }
+  val sp = new SubPoint(1,2)
+
 }
