@@ -1059,4 +1059,15 @@ object ABC {
     println(if (T.startsWith(S)) "Yes" else "No")
   }
 
+  def chineseRestaurant = {
+    val sc = new java.util.Scanner(System.in)
+    val n = sc.nextInt
+    val p = Seq.fill(n)(sc.nextInt)
+    val ans = p.zipWithIndex.map { case (p_i, i) =>
+      Seq((p_i - i + n) % n, (p_i - i - 1 + n) % n, (p_i - i + 1 + n) % n)
+    }
+    val ans1 = ans.flatten.groupBy(identity).values.map(_.size).max
+    println(ans1)
+  }
+
 }
