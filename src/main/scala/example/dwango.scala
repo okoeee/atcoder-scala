@@ -52,6 +52,15 @@ object dwango {
     val x = _x
     val y = _y
   }
-  val sp = new SubPoint(1,2)
+  val sp = new SubPoint(1, 2)
+
+  // トレイト
+  trait Human {
+    val name: String
+    val age: Int
+    def display() = println(name)
+  }
+
+  class Employee(val name: String, val age: Int, expiration: Int) extends Human
 
 }
