@@ -1070,4 +1070,10 @@ object ABC {
     println(ans1)
   }
 
+  def anywayTakahashi = {
+    val Array(a, b, c, d) = io.StdIn.readLine.split(" ").map(_.toInt)
+    println((a + b) * (c - d))
+    println("Takahashi")
+  }
+
 }
