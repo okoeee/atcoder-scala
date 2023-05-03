@@ -1,6 +1,6 @@
 package example
 
-object dwango {
+object Dwango {
 
   // 変数束縛パターン
   def p1 = {
@@ -91,5 +91,20 @@ object dwango {
   }
 
   Point(2, 3)
+
+  // トレイト
+  trait TraitA {
+    val name: String
+    def printName = println(name)
+  }
+
+  class ClassA(val name: String) extends TraitA
+
+  object ObjectA {
+    def init = {
+      val a = new ClassA("dwango")
+      a.printName
+    }
+  }
 
 }
