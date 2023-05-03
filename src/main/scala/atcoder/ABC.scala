@@ -1076,4 +1076,24 @@ object ABC {
     println("Takahashi")
   }
 
+  def rectangleDetection = {
+    val S = Array.fill(10)(io.StdIn.readLine.toArray)
+    val ans = S.zipWithIndex.filter { case (arr: Array[Char], i) => arr.contains('#') }.map { case (_, i) => i + 1 }
+    val (a, b) = (ans.min, ans.max)
+    val (c, d) = (S(a - 1).indexWhere(_ == '#') + 1, S(a - 1).lastIndexWhere(_ == '#') + 1)
+    println(a, b, c, d)
+  }
+  def rectangleDetectionOther = {
+    val S = Array.fill(10)(io.StdIn.readLine.toArray)
+    val zipS = S.zipWithIndex
+    val a = zipS.indexWhere { case (arr, i) => arr.contains('#') } + 1
+    val b = zipS.lastIndexWhere { case (arr, i) => arr.contains('#') } + 1
+    val c = S(a - 1).indexWhere(_ == '#') + 1
+    val d = S(a - 1).lastIndexWhere(_ == '#') + 1
+    println(s"""
+        |$a $b
+        |$c $d
+        |""".stripMargin)
+  }
+
 }
