@@ -85,4 +85,11 @@ object dwango {
     }
   }
 
+  // オブジェクト
+  object Point {
+    def apply(x: Int, y: Int): Point = new Point(x, y)
+  }
+
+  Point(2, 3)
+
 }
