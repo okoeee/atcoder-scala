@@ -51,6 +51,7 @@ object dwango {
   class SubPoint(_x: Int, _y: Int) {
     val x = _x
     val y = _y
+    val z = _x + _y
   }
   val sp = new SubPoint(1, 2)
 
@@ -62,5 +63,26 @@ object dwango {
   }
 
   class Employee(val name: String, val age: Int, expiration: Int) extends Human
+
+  // クラス練習問題
+  // 3次元座標のクラス
+  class Point3D(val x: Int, val y: Int, val z: Int)
+
+  // Shapeクラスの継承
+  abstract class Shape {
+    def area: Double
+  }
+
+  class Rectangle(w: Double, h: Double) extends Shape {
+    override def area: Double = {
+      w * h
+    }
+  }
+
+  class Circle(r: Double) extends Shape {
+    override def area: Double = {
+      r * r * Math.PI
+    }
+  }
 
 }
