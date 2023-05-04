@@ -1108,4 +1108,15 @@ object ABC {
     }
   }
 
+  def submaskOther = {
+    val N = io.StdIn.readLong
+    var ans = Vector[Long](0L)
+    for (i <- 0 to 59) {
+      if ((N & (1L << i)) != 0) {
+        for (e <- ans) ans = ans :+ (e | (1L << i))
+      }
+    }
+    println(ans.mkString("\n"))
+  }
+
 }

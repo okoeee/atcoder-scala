@@ -12,7 +12,7 @@ object Main {
   def main(args: Array[String]): Unit = {
     println("input value")
     val n = 4
-    ABC.submask
+    ABC.submaskOther
     // Dwango.ObjectA.init
   }
 }
