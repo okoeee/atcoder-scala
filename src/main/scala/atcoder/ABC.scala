@@ -1096,4 +1096,16 @@ object ABC {
         |""".stripMargin)
   }
 
+  def submask = {
+    val N = io.StdIn.readLong
+    val nb = N.toBinaryString
+    val n = nb.length
+    var i = 0
+    while (i <= N) {
+      val ib = s"%0${n}d".format(BigInt(i.toBinaryString))
+      if (ib.zipWithIndex.filter { case (c, i) => c == '1' }.forall { case (elem, i) => elem == nb(i) }) println(i)
+      i += 1
+    }
+  }
+
 }

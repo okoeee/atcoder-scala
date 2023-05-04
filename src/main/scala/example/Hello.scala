@@ -11,7 +11,8 @@ import scala.util.{Failure, Success}
 object Main {
   def main(args: Array[String]): Unit = {
     println("input value")
-    // ABC.rectangleDetectionOther
-    Dwango.ObjectA.init
+    val n = 4
+    ABC.submask
+    // Dwango.ObjectA.init
   }
 }
