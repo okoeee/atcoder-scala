@@ -123,4 +123,11 @@ object Dwango {
     }
   }
 
+  // コレクションライブラリ
+  def swapArray[T](arr: Array[T])(i: Int, j: Int) = {
+    val temp = arr(i)
+    arr(i) = arr(j)
+    arr(j) = temp
+  }
+
 }
