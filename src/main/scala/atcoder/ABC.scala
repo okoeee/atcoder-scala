@@ -1119,4 +1119,19 @@ object ABC {
     println(ans.mkString("\n"))
   }
 
+  def oneTwoFourTest = {
+    val Array(a, b) = io.StdIn.readLine.split(" ").map(_.toInt)
+    def returnSeparatedNum(x: Int): List[Int] = x match {
+      case 0 => List(0)
+      case 1 => List(1)
+      case 2 => List(2)
+      case 3 => List(1, 2)
+      case 4 => List(4)
+      case 5 => List(1, 4)
+      case 6 => List(2, 4)
+      case 7 => List(1, 2, 4)
+    }
+    println((returnSeparatedNum(a) ++ returnSeparatedNum(b)).toSet.sum)
+  }
+
 }
