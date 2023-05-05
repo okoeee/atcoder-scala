@@ -12,7 +12,7 @@ object Main {
   def main(args: Array[String]): Unit = {
     println("input value")
     val n = 4
-    ABC.submaskOther
-    // Dwango.ObjectA.init
+    // ABC.submaskOther
+    println(Dwango.find(List(1, 2, 3, 4, 5, 6))(x => x == 2))
   }
 }

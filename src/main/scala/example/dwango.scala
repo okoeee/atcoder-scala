@@ -130,4 +130,46 @@ object Dwango {
     arr(j) = temp
   }
 
+  def joinByComma(start: Int, end: Int): String = {
+    (start to end).mkString(",")
+  }
+
+  def reverse[T](list: List[T]): List[T] = {
+    list.foldLeft(List[T]()) { case (acc, elem) => elem +: acc }
+  }
+
+  def mkString[T](list: List[T])(sep: String): String = {
+    list.foldLeft("")((acc, elem) => acc + sep + elem.toString).tail
+  }
+
+  def mkStringOther[T](list: List[T])(sep: String): String = list match {
+    case Nil => ""
+    case x :: xs => xs.foldLeft(x.toString)((x, y) => x + sep + y)
+  }
+
+  def map[T, U](list: List[T])(f: T => U): List[U] = {
+    list.foldLeft(List[U]()) { (acc, elem) => f(elem) :: acc }.reverse
+  }
+
+  def filter[T](list: List[T])(f: T => Boolean): List[T] = {
+    list.foldLeft(List[T]()) { (acc, elem) => if (f(elem)) elem +: acc else acc }.reverse
+  }
+
+  def find[T](list: List[T])(f: T => Boolean): Option[T] = {
+    def calc(i: Int): Option[T] = {
+      if (i > list.length) None
+      else {
+        if (f(list(i))) Some(list(i))
+        else calc(i + 1)
+      }
+    }
+    calc(0)
+  }
+
+  def findOfListVer[T](list: List[T])(f: T => Boolean): Option[T] = list match {
+    case x :: xs if f(x) => Some(x)
+    case x :: xs => find(xs)(f)
+    case _ => None
+  }
+
 }
