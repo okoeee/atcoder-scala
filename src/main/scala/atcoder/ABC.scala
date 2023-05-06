@@ -1134,4 +1134,24 @@ object ABC {
     println((returnSeparatedNum(a) ++ returnSeparatedNum(b)).toSet.sum)
   }
 
+  def hammer = {
+    val sc = new java.util.Scanner(System.in)
+    var x = sc.nextInt
+    var y = sc.nextInt
+    var z = sc.nextInt
+    if (x < 0) {
+      x = -x
+      y = -y
+      z = -z
+    }
+    println(
+      if (y > 0 && y < x)
+        if (z < y)
+          if (z > 0) x
+          else Math.abs(z) * 2 + x
+        else -1
+      else x
+    )
+  }
+
 }
