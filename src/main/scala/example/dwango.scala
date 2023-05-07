@@ -172,4 +172,21 @@ object Dwango {
     case _ => None
   }
 
+  // エラー処理
+  sealed trait LoginError
+  case object InvalidPassword extends LoginError
+  case object UserNotFound extends LoginError
+  case object PasswordLocked extends LoginError
+
+  case class User(id: Long, name: String, password: String)
+
+  object LoginService {
+    def login(name: String, password: String): Either[LoginError, User] = ???
+  }
+
+  LoginService.login(name = "dwango", password = "password") match {
+    case Right(user) => println(s"id: ${user.id}")
+    case Left(InvalidPassword) => println(s"Invalid Password")
+  }
+
 }
