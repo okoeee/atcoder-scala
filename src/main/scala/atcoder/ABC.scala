@@ -1161,8 +1161,36 @@ object ABC {
     def calc() = {
       var rArr = Array[Int]()
       val r = uv.find(arr => arr.contains(x))
-      if(r.exists(arr => arr.contains(y))) "hoge"
+      if (r.exists(arr => arr.contains(y))) "hoge"
     }
+  }
+
+  def DFS = {
+    // 入力値の受け取り
+    val Array(n, x, y) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val uv = Array(-1) +: Array.fill(n)(Array.empty[Int])
+    (0 until n - 1).foreach { i =>
+      io.StdIn.readLine.split(" ").map(_.toInt) match {
+        case Array(x, y) =>
+          uv(x) = uv(x) :+ y
+          uv(y) = uv(y) :+ x
+      }
+    }
+
+    var ans = scala.collection.mutable.ListBuffer.empty[Int]
+
+    def DFS(now: Int, pre: Int): Unit = {
+      ans += now
+      uv(now).foreach { to =>
+        if (to != pre) {
+          DFS(to, now)
+          ans += now
+        }
+      }
+    }
+
+    DFS(1, -1)
+    println(ans.mkString(" "))
   }
 
 }
