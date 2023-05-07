@@ -1154,4 +1154,15 @@ object ABC {
     )
   }
 
+  def simplePath = {
+    val Array(n, x, y) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val uv = Array.fill(n - 1)(io.StdIn.readLine.split(" ").map(_.toInt))
+
+    def calc() = {
+      var rArr = Array[Int]()
+      val r = uv.find(arr => arr.contains(x))
+      if(r.exists(arr => arr.contains(y))) "hoge"
+    }
+  }
+
 }
