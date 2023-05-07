@@ -1193,4 +1193,28 @@ object ABC {
     println(ans.mkString(" "))
   }
 
+  def simplePathOther1 = {
+    import scala.io.StdIn._
+    // 入力値の受け取り
+    val Array(n, x, y) = readLine.split(" ").map(_.toInt)
+    val edges = Array.fill(n - 1)(readLine().split(" ").map(_.toInt))
+
+    val graph = Array.fill(n + 1)(List.empty[Int])
+
+    // グラフを作成
+    edges.foreach { case Array(u, v) =>
+      graph(u) = v :: graph(u)
+      graph(v) = u :: graph(v)
+    }
+
+    def dfs(v: Int, p: Int, path: List[Int]): List[Int] = {
+      if (v == y) path :+ v
+      else graph(v).filter(_ != p).flatMap(u => dfs(u, v, path :+ v)).takeWhile(_ != y)
+    }
+
+    val path = dfs(x, -1, List.empty)
+
+    println(path.mkString(" "))
+  }
+
 }
