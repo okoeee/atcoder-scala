@@ -189,4 +189,48 @@ object Dwango {
     case Left(InvalidPassword) => println(s"Invalid Password")
   }
 
+  // implicit
+  def implicitSample = {
+    implicit def intToBoolean(arg: Int): Boolean = arg != 0
+    if (1) {
+      println("1は真なり")
+    }
+  }
+
+  // Scala2.10 以前の書き方
+  class RichStringOld(val src: String) {
+    def smile: String = src + ":-)"
+  }
+
+  implicit def enrichString(arg: String): RichString = new RichString(arg)
+
+  // Scala 2.10 以降の書き方
+  implicit class RichString(val src: String) {
+    def smile(src: String) = src + ":-)"
+  }
+
+  // implicit parameter (文脈引き渡し)
+  case class Connection(dbName: String, password: String)
+  def readRecordsFromTable(columnName: String, tableName: String, connection: Connection) = ???
+  // 上記のmethodを書きかえ後
+  def rewritedReadRecordsFromTable(columnName: String, tableName: String)(implicit connection: Connection) = ???
+
+  // Listの中身を足すmethod
+  trait Additive[A] {
+    def zero: A
+    def plus(a: A, b: A): A
+  }
+
+  object StringAdditive extends Additive[String] {
+    def zero: String = ""
+    def plus(a: String, b: String): String = a + b
+  }
+
+  object IntAdditive extends Additive[Int] {
+    def zero: Int = 0
+    def plus(a: Int, b: Int): Int = a + b
+  }
+
+  def sum[A](list: List[A])(a: Additive[A]) = list.foldLeft(a.zero)((x, y) => a.plus(x, y))
+
 }
