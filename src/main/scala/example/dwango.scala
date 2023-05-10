@@ -221,16 +221,16 @@ object Dwango {
     def plus(a: A, b: A): A
   }
 
-  object StringAdditive extends Additive[String] {
+  implicit object StringAdditive extends Additive[String] {
     def zero: String = ""
     def plus(a: String, b: String): String = a + b
   }
 
-  object IntAdditive extends Additive[Int] {
+  implicit object IntAdditive extends Additive[Int] {
     def zero: Int = 0
     def plus(a: Int, b: Int): Int = a + b
   }
 
-  def sum[A](list: List[A])(a: Additive[A]) = list.foldLeft(a.zero)((x, y) => a.plus(x, y))
+  def sum[A](list: List[A])(implicit a: Additive[A]): A = list.foldLeft(a.zero)((x, y) => a.plus(x, y))
 
 }
