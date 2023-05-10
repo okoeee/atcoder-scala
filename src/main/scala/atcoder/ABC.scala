@@ -1217,4 +1217,9 @@ object ABC {
     println(path.mkString(" "))
   }
 
+  def a484558 = {
+    val N = io.StdIn.readInt
+    println("%02X".format(N))
+  }
+
 }
