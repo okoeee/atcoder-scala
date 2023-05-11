@@ -1222,4 +1222,14 @@ object ABC {
     println("%02X".format(N))
   }
 
+  def maintainMultipleSequences = {
+    import io.StdIn._
+    val Array(n, q) = readLine.split(" ").map(_.toInt)
+    val ll = Array.fill(n)(readLine.split(" ").map(_.toInt))
+    val ss = Array.fill(q)(readLine.split(" ").map(_.toInt))
+
+    val rl = ss.map { case Array(s, t) => ll(s - 1)(t) }
+    rl.foreach(println(_))
+  }
+
 }
