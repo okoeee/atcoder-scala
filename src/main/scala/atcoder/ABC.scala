@@ -1239,8 +1239,8 @@ object ABC {
     def calc(preNum: Int, i: Int, list: List[Int]): Int = {
       if (preNum + 1 == list(i)) calc(preNum + 1, i + 1, list)
       else {
-        val (last, lastSecond) = (list(list.length - 1), list(list.length - 2))
-        if (lastSecond <= preNum) preNum + 1
+        val (last, lastSecond) = (list.last, list(list.length - 2))
+        if (lastSecond <= preNum) preNum
         else {
           val dropList = list.dropRight(2)
           calc(preNum + 1, i + 1, (dropList :+ preNum + 1).sorted)
