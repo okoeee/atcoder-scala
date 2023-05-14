@@ -1253,4 +1253,9 @@ object ABC {
 
   }
 
+  def integerSum = {
+    val N = io.StdIn.readInt
+    println(io.StdIn.readLine.split(" ").map(_.toInt).sum)
+  }
+
 }

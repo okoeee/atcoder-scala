@@ -231,6 +231,12 @@ object Dwango {
     def plus(a: Int, b: Int): Int = a + b
   }
 
+  implicit object PointAdditive extends Additive[Point] {
+    override def plus(a: Point, b: Point): Point = Point(a.x + b.x, a.y + b.y)
+
+    override def zero: Point = Point(0, 0)
+  }
+
   def sum[A](list: List[A])(implicit a: Additive[A]): A = list.foldLeft(a.zero)((x, y) => a.plus(x, y))
 
 }
