@@ -1258,4 +1258,12 @@ object ABC {
     println(io.StdIn.readLine.split(" ").map(_.toInt).sum)
   }
 
+  def everyoneIsFriends = {
+    import scala.io.StdIn.readLine
+    val Array(n, m) = readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(m)(readLine.split(" ").tail.map(_.toInt).combinations(2).toSet)
+    val r = (1 to n).toSet.subsets(2).toList.forall(elem => arr.contains(elem))
+    println(if(r) "Yes" else "No")
+  }
+
 }
