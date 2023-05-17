@@ -1273,9 +1273,16 @@ object ABC {
     val combinations = (1 to n).toList.combinations(2).map{case List(x, y) => Combination(x, y, false)}
     // val arr = Array.fill(m)(readLine.split(" ").tail.map(_.toInt).combinations(2))
 
-    (0 until m).map(i => readLine.split(" ").map(_.toInt).tail.combinations(2).map{case Array(x, y) =>
-      combinations.indexWhere(c => (c.x == x && c.y == y) || (c.y == x && c.x == y))
+    val a = (0 until m).map(i => readLine.split(" ").map(_.toInt).tail.combinations(2).map{case Array(x, y) =>
+      val i = combinations.indexWhere(c => (c.x == x && c.y == y) || (c.y == x && c.x == y))
+      // combinations(i)
     })
+  }
+
+  def eifOther = {
+    val sc = new java.util.Scanner(System.in)
+    val n, m = sc.nextInt
+    val xss = (1 to m).map{_=>List.fill(sc.nextInt)(sc.nextInt)}
   }
 
 }
