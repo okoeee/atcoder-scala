@@ -1283,6 +1283,36 @@ object ABC {
     val sc = new java.util.Scanner(System.in)
     val n, m = sc.nextInt
     val xss = (1 to m).map{_=>List.fill(sc.nextInt)(sc.nextInt)}
+    val checks = for {
+      i <- 1 to n
+      j <- 1 to i
+    } yield {
+      xss.exists(p => p.contains(i) && p.contains(j))
+    }
+  }
+
+  def maxEven = {
+    val N = io.StdIn.readInt
+    val arr = io.StdIn.readLine.split(" ").map(_.toLong).sorted
+
+    val evenArr = arr.filter(elem => elem % 2 == 0)
+    val oddArr = arr.filter(elem => elem % 2 == 1)
+
+    val r1 = evenArr.takeRight(2).sum
+    val r2 = oddArr.takeRight(2).sum
+
+    val r1IsEven = r1 % 2 == 0
+    val r2IsEven = r2 % 2 == 0
+
+    println{
+      if(evenArr.length == 1) -1
+      else {
+        if(r1IsEven && r2IsEven) if(r1 < r2) r2 else r1
+        else if(r1IsEven && !r2IsEven) r1
+        else if(!r1IsEven && r2IsEven) r2
+        else -1
+      }
+    }
   }
 
 }
