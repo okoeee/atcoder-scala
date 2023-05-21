@@ -1,6 +1,7 @@
 package atcoder
 
 import java.util.Scanner
+import scala.math.BigDecimal.RoundingMode
 
 object ABC {
 
@@ -1316,14 +1317,28 @@ object ABC {
   }
 
   def recursiveFunction = {
-
     def factorial(i: Int): Int = {
       if(i == 0) 1
       else i * factorial(i - 1)
     }
-
     val N = io.StdIn.readInt
     println(factorial(N))
+  }
+
+  def brokenRounding = {
+    import scala.math.BigDecimal.RoundingMode
+    val Array(x, k) = io.StdIn.readLine.split(" ")
+    val num = BigDecimal(x.toLong)
+
+    def round(i: Int, rounded: BigDecimal): BigDecimal = {
+      if(i > k.toInt) rounded
+      else {
+        round(i+1, rounded.setScale(-i, RoundingMode.HALF_UP))
+      }
+    }
+
+    val rounded = round(-1, num)
+    println(rounded.toLong)
   }
 
 }
