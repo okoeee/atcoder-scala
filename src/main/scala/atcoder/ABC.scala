@@ -1341,4 +1341,15 @@ object ABC {
     println(rounded.toLong)
   }
 
+  def kPlus1thLargestNumber = {
+    val N = io.StdIn.readInt
+    val A = io.StdIn.readLine.split(" ").map(_.toInt)
+    val setA = A.toSet
+
+    val r = A.map{elem => setA.count(p => elem < p)}
+    val rr = (0 until N).map(p => r.count(elem => elem == p))
+    rr.foreach(println)
+
+  }
+
 }
