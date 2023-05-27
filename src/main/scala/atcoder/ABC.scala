@@ -1371,4 +1371,107 @@ object ABC {
     println(ans.mkString("\n"))
   }
 
+  def similarString = {
+    import io.StdIn._
+    val N = readInt
+    val S = readLine
+    val T = readLine
+    val r = S.zipWithIndex.forall{case(c, i) =>
+      c == T(i) || (c == 'l' && T(i) == '1') || (c == '1' && T(i) == 'l') || (c == 'o' && T(i) == '0') || (c == '0' && T(i) == 'o')
+    }
+    println(if(r) "Yes" else "No")
+  }
+
+  def discord = {
+    import io.StdIn._
+    val Array(n, m) = readLine.split(" ").map(_.toInt)
+    val inputC = Array.fill(m){
+      val arr = readLine.split(" ").map(_.toInt)
+      for(i <- 0 until arr.size - 1) yield Set(arr(i), arr(i+1))
+    }.flatten.toSet
+
+    val allC = (1 to n).combinations(2).toSet
+    println(allC.size - inputC.size)
+  }
+
+  def dash = {
+    case class Point(x: Int, y: Int)
+
+    import io.StdIn._
+    val Array(n, m, h, k) = readLine.split(" ").map(_.toInt)
+    val S = readLine
+    var xy = collection.mutable.ListBuffer.fill(m){
+      val Array(x, y) = readLine.split(" ").map(_.toInt)
+      Point(x, y)
+    }
+
+    def calcHAndRemoveXY(now: Point, h: Int): Int = {
+      if (h < k) {
+        val i = xy.indexWhere(p => p.x == now.x && p.y == now.y)
+        if (i == -1) h
+        else {
+          xy.remove(i)
+          k
+        }
+      } else h
+    }
+
+    def isOk(i: Int, now: Point, h: Int): Boolean = {
+      if(i == n) true
+      else {
+        val nh = calcHAndRemoveXY(now, h)
+        if(nh <= 0) false
+        else
+          S(i-1) match {
+            case 'L' => isOk(i+1, now.copy(x = now.x - 1), nh-1)
+            case 'R' => isOk(i+1, now.copy(x = now.x + 1), nh-1)
+            case 'U' => isOk(i+1, now.copy(y = now.y + 1), nh-1)
+            case 'D' => isOk(i+1, now.copy(y = now.x - 1), nh-1)
+          }
+      }
+    }
+
+    println(if(isOk(1, Point(0,0), h)) "Yes" else "No")
+
+  }
+
+  def dashOther = {
+    import io.StdIn._
+    val Array(n, m, h, k) = readLine.split(" ").map(_.toInt)
+    val items = new Array[(Int, Int)](m)
+    for (i <- 0 until n) {
+      val Array(x, y) = readLine.split(" ").map(_.toInt)
+      items(i) = (x, y)
+    }
+    val S = readLine
+
+    def isOk(h: Int, k: Int, items: Array[(Int, Int)]): Boolean = {
+      var x = 0
+      var y = 0
+      var health = h
+
+      for (i <- 0 until n) {
+        S(i) match {
+          case 'R' => x += 1
+          case 'L' => x -= 1
+          case 'U' => y += 1
+          case 'D' => y -= 1
+        }
+
+        health -= 1
+
+        if (health <= 0) {
+          return false
+        }
+
+        if (items.contains((x, y)) && health < k) {
+          health = k
+        }
+      }
+      true
+
+    }
+    println(isOk(h, k, items))
+  }
+
 }
