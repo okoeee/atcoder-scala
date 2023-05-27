@@ -1349,7 +1349,26 @@ object ABC {
     val r = A.map{elem => setA.count(p => elem < p)}
     val rr = (0 until N).map(p => r.count(elem => elem == p))
     rr.foreach(println)
+  }
 
+  def kPlus1LargestNumberOther = {
+    import io.StdIn._
+    val N = readInt
+    val A = readLine.split(" ").map(_.toLong)
+    val B = A.toSet.toArray.sorted.reverse
+    val m = collection.mutable.TreeMap[Long, Long]()
+
+    for(e <- A) {
+      val t = m.getOrElse(e, 0L)
+      m.put(e, t+1)
+    }
+
+    var ans = Vector[Long]()
+
+    for(e <- B) ans = ans :+ m(e)
+    for(i <- 0 until N - B.size) ans = ans :+ 0L
+
+    println(ans.mkString("\n"))
   }
 
 }
