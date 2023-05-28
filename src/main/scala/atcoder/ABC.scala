@@ -1382,6 +1382,31 @@ object ABC {
     println(if(r) "Yes" else "No")
   }
 
+  def similarStringOther = {
+    import io.StdIn._
+    val N = readInt
+    val S = readLine
+    val T = readLine
+    val r = S.zip(T) match {
+      case IndexedSeq(x, y) if x == y => true
+      case IndexedSeq(x, y) if x == 'l' && y == '1' => true
+    }
+  }
+
+  def similarStringOther2 = {
+    import io.StdIn._
+    val N = readInt
+    val S = readLine
+    val T = readLine
+    val r = S.zip(T).forall {
+      case (x, y) if (x == y) => true
+      case ('1', 'l') | ('l', '1') => true
+      case ('0', 'o') | ('o', '0') => true
+      case _ => false
+    }
+    println(if(r) "Yes" else "No")
+  }
+
   def discord = {
     import io.StdIn._
     val Array(n, m) = readLine.split(" ").map(_.toInt)
@@ -1472,6 +1497,10 @@ object ABC {
 
     }
     println(isOk(h, k, items))
+  }
+
+  def dashOther1 = {
+
   }
 
 }
