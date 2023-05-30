@@ -1594,8 +1594,15 @@ object ABC {
 
   def battingAverage = {
     val Array(a, b) = io.StdIn.readLine.split(" ").map(_.toInt)
-    val r = (BigDecimal(b)/BigDecimal(a)).setScale(3, scala.math.BigDecimal.RoundingMode.HALF_UP)
+    val r = (BigDecimal(b) / BigDecimal(a)).setScale(3, scala.math.BigDecimal.RoundingMode.HALF_UP)
     println(r)
+  }
+
+  def lineSensor = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(io.StdIn.readLine.split("")).transpose
+    val r = for (i <- 0 until w) yield arr(i).count(_ == "#")
+    println(r.mkString(" "))
   }
 
 }
