@@ -1592,4 +1592,10 @@ object ABC {
 
   }
 
+  def battingAverage = {
+    val Array(a, b) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val r = (BigDecimal(b)/BigDecimal(a)).setScale(3, scala.math.BigDecimal.RoundingMode.HALF_UP)
+    println(r)
+  }
+
 }
