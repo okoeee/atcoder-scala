@@ -1264,26 +1264,28 @@ object ABC {
     val Array(n, m) = readLine.split(" ").map(_.toInt)
     val arr = Array.fill(m)(readLine.split(" ").tail.map(_.toInt).combinations(2).toSet)
     val r = (1 to n).toSet.subsets(2).toList.forall(elem => arr.contains(elem))
-    println(if(r) "Yes" else "No")
+    println(if (r) "Yes" else "No")
   }
 
   def everyoneIsFriendsOther = {
     import scala.io.StdIn.readLine
     case class Combination(x: Int, y: Int, b: Boolean)
     val Array(n, m) = readLine.split(" ").map(_.toInt)
-    val combinations = (1 to n).toList.combinations(2).map{case List(x, y) => Combination(x, y, false)}
+    val combinations = (1 to n).toList.combinations(2).map { case List(x, y) => Combination(x, y, false) }
     // val arr = Array.fill(m)(readLine.split(" ").tail.map(_.toInt).combinations(2))
 
-    val a = (0 until m).map(i => readLine.split(" ").map(_.toInt).tail.combinations(2).map{case Array(x, y) =>
-      val i = combinations.indexWhere(c => (c.x == x && c.y == y) || (c.y == x && c.x == y))
+    val a = (0 until m).map(i =>
+      readLine.split(" ").map(_.toInt).tail.combinations(2).map { case Array(x, y) =>
+        val i = combinations.indexWhere(c => (c.x == x && c.y == y) || (c.y == x && c.x == y))
       // combinations(i)
-    })
+      }
+    )
   }
 
   def eifOther = {
     val sc = new java.util.Scanner(System.in)
     val n, m = sc.nextInt
-    val xss = (1 to m).map{_=>List.fill(sc.nextInt)(sc.nextInt)}
+    val xss = (1 to m).map { _ => List.fill(sc.nextInt)(sc.nextInt) }
     val checks = for {
       i <- 1 to n
       j <- 1 to i
@@ -1305,12 +1307,12 @@ object ABC {
     val r1IsEven = r1 % 2 == 0
     val r2IsEven = r2 % 2 == 0
 
-    println{
-      if(evenArr.length == 1) -1
+    println {
+      if (evenArr.length == 1) -1
       else {
-        if(r1IsEven && r2IsEven) if(r1 < r2) r2 else r1
-        else if(r1IsEven && !r2IsEven) r1
-        else if(!r1IsEven && r2IsEven) r2
+        if (r1IsEven && r2IsEven) if (r1 < r2) r2 else r1
+        else if (r1IsEven && !r2IsEven) r1
+        else if (!r1IsEven && r2IsEven) r2
         else -1
       }
     }
@@ -1318,7 +1320,7 @@ object ABC {
 
   def recursiveFunction = {
     def factorial(i: Int): Int = {
-      if(i == 0) 1
+      if (i == 0) 1
       else i * factorial(i - 1)
     }
     val N = io.StdIn.readInt
@@ -1331,9 +1333,9 @@ object ABC {
     val num = BigDecimal(x.toLong)
 
     def round(i: Int, rounded: BigDecimal): BigDecimal = {
-      if(i > k.toInt) rounded
+      if (i > k.toInt) rounded
       else {
-        round(i+1, rounded.setScale(-i, RoundingMode.HALF_UP))
+        round(i + 1, rounded.setScale(-i, RoundingMode.HALF_UP))
       }
     }
 
@@ -1346,7 +1348,7 @@ object ABC {
     val A = io.StdIn.readLine.split(" ").map(_.toInt)
     val setA = A.toSet
 
-    val r = A.map{elem => setA.count(p => elem < p)}
+    val r = A.map { elem => setA.count(p => elem < p) }
     val rr = (0 until N).map(p => r.count(elem => elem == p))
     rr.foreach(println)
   }
@@ -1358,15 +1360,15 @@ object ABC {
     val B = A.toSet.toArray.sorted.reverse
     val m = collection.mutable.TreeMap[Long, Long]()
 
-    for(e <- A) {
+    for (e <- A) {
       val t = m.getOrElse(e, 0L)
-      m.put(e, t+1)
+      m.put(e, t + 1)
     }
 
     var ans = Vector[Long]()
 
-    for(e <- B) ans = ans :+ m(e)
-    for(i <- 0 until N - B.size) ans = ans :+ 0L
+    for (e <- B) ans = ans :+ m(e)
+    for (i <- 0 until N - B.size) ans = ans :+ 0L
 
     println(ans.mkString("\n"))
   }
@@ -1376,10 +1378,10 @@ object ABC {
     val N = readInt
     val S = readLine
     val T = readLine
-    val r = S.zipWithIndex.forall{case(c, i) =>
+    val r = S.zipWithIndex.forall { case (c, i) =>
       c == T(i) || (c == 'l' && T(i) == '1') || (c == '1' && T(i) == 'l') || (c == 'o' && T(i) == '0') || (c == '0' && T(i) == 'o')
     }
-    println(if(r) "Yes" else "No")
+    println(if (r) "Yes" else "No")
   }
 
   def similarStringOther = {
@@ -1404,16 +1406,19 @@ object ABC {
       case ('0', 'o') | ('o', '0') => true
       case _ => false
     }
-    println(if(r) "Yes" else "No")
+    println(if (r) "Yes" else "No")
   }
 
   def discord = {
     import io.StdIn._
     val Array(n, m) = readLine.split(" ").map(_.toInt)
-    val inputC = Array.fill(m){
-      val arr = readLine.split(" ").map(_.toInt)
-      for(i <- 0 until arr.size - 1) yield Set(arr(i), arr(i+1))
-    }.flatten.toSet
+    val inputC = Array
+      .fill(m) {
+        val arr = readLine.split(" ").map(_.toInt)
+        for (i <- 0 until arr.size - 1) yield Set(arr(i), arr(i + 1))
+      }
+      .flatten
+      .toSet
 
     val allC = (1 to n).combinations(2).toSet
     println(allC.size - inputC.size)
@@ -1425,7 +1430,7 @@ object ABC {
     import io.StdIn._
     val Array(n, m, h, k) = readLine.split(" ").map(_.toInt)
     val S = readLine
-    var xy = collection.mutable.ListBuffer.fill(m){
+    var xy = collection.mutable.ListBuffer.fill(m) {
       val Array(x, y) = readLine.split(" ").map(_.toInt)
       Point(x, y)
     }
@@ -1442,21 +1447,21 @@ object ABC {
     }
 
     def isOk(i: Int, now: Point, h: Int): Boolean = {
-      if(i == n) true
+      if (i == n) true
       else {
         val nh = calcHAndRemoveXY(now, h)
-        if(nh <= 0) false
+        if (nh <= 0) false
         else
-          S(i-1) match {
-            case 'L' => isOk(i+1, now.copy(x = now.x - 1), nh-1)
-            case 'R' => isOk(i+1, now.copy(x = now.x + 1), nh-1)
-            case 'U' => isOk(i+1, now.copy(y = now.y + 1), nh-1)
-            case 'D' => isOk(i+1, now.copy(y = now.x - 1), nh-1)
+          S(i - 1) match {
+            case 'L' => isOk(i + 1, now.copy(x = now.x - 1), nh - 1)
+            case 'R' => isOk(i + 1, now.copy(x = now.x + 1), nh - 1)
+            case 'U' => isOk(i + 1, now.copy(y = now.y + 1), nh - 1)
+            case 'D' => isOk(i + 1, now.copy(y = now.x - 1), nh - 1)
           }
       }
     }
 
-    println(if(isOk(1, Point(0,0), h)) "Yes" else "No")
+    println(if (isOk(1, Point(0, 0), h)) "Yes" else "No")
 
   }
 
@@ -1498,6 +1503,93 @@ object ABC {
     }
     println(isOk(h, k, items))
   }
-  
+
+  def dashOther1 = {
+    import io.StdIn._
+    val Array(n, m, h, k) = readLine.split(" ").map(_.toInt)
+    val S = readLine.toCharArray
+    val ss = List
+      .fill(m) {
+        val Array(x, y) = readLine.split(" ").map(_.toInt)
+        (x, y)
+      }
+      .toSet
+    var x, y = 0
+
+    def rec(i: Int = 0, hp: Int, items: Set[(Int, Int)]): Boolean = (i, hp) match {
+      case (i, _) if i == n => true
+      case (_, hp) if hp == 0 => false
+      case (i, hp) =>
+        S(i) match {
+          case 'R' =>
+            x += 1
+            if (hp - 1 < k && ss.contains(x, y)) rec(i + 1, k, items.filter(p => p == (x, y)))
+            else rec(i + 1, hp - 1, items)
+          case 'L' =>
+            x -= 1
+            if (hp - 1 < k && ss.contains(x, y)) rec(i + 1, k, items.filter(p => p == (x, y)))
+            else rec(i + 1, hp - 1, items)
+          case 'U' =>
+            y += 1
+            if (hp - 1 < k && ss.contains(x, y)) rec(i + 1, k, items.filter(p => p == (x, y)))
+            else rec(i + 1, hp - 1, items)
+          case 'D' =>
+            y -= 1
+            if (hp - 1 < k && ss.contains(x, y)) rec(i + 1, k, items.filter(p => p == (x, y)))
+            else rec(i + 1, hp - 1, items)
+        }
+    }
+    println(if (rec(0, h, ss)) "Yes" else "No")
+  }
+
+  def dashWithGPT: Unit = {
+    import scala.collection.mutable
+
+    val Array(n, m, h, k) = scala.io.StdIn.readLine().split(" ").map(_.toInt)
+    val s = scala.io.StdIn.readLine()
+
+    val items = mutable.Set.empty[(Int, Int)]
+    for (_ <- 1 to m) {
+      val Array(x, y) = scala.io.StdIn.readLine().split(" ").map(_.toInt)
+      items.add((x, y))
+    }
+
+    var x, y = 0
+    var hp = h
+
+    def move(direction: Char): Unit = {
+      direction match {
+        case 'R' => x += 1
+        case 'L' => x -= 1
+        case 'U' => y += 1
+        case 'D' => y -= 1
+      }
+
+      hp -= 1
+
+      if (hp < 0) return
+
+      if (items.contains((x, y)) && hp < k) {
+        items.remove((x, y))
+        hp = k
+      }
+    }
+
+    var canMove = true
+    for (i <- 0 until n) {
+      move(s(i))
+      if (hp <= 0) {
+        canMove = false
+        return
+      }
+    }
+
+    if (canMove) {
+      println("Yes")
+    } else {
+      println("No")
+    }
+
+  }
 
 }
