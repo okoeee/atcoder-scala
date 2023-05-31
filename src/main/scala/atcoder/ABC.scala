@@ -1605,4 +1605,13 @@ object ABC {
     println(r.mkString(" "))
   }
 
+  def ameba = {
+    val n = io.StdIn.readInt
+    val arr = io.StdIn.readLine.split(" ").map(_.toInt)
+    val ameba = Array.fill(2*n+1)(0)
+    for(i <- 0 until n) {
+      ameba(2*i+1) = ameba(arr(i)-1)+1
+    }
+  }
+
 }
