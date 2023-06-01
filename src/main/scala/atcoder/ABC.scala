@@ -1622,4 +1622,10 @@ object ABC {
     println(r + 1)
   }
 
+  def abcdef = {
+    val Array(a, b, c, d, e, f) = io.StdIn.readLine.split(" ").map(_.toLong)
+    val r = (a * b * c - d * e * f) % 998244353
+    println(r)
+  }
+
 }
