@@ -1608,10 +1608,18 @@ object ABC {
   def ameba = {
     val n = io.StdIn.readInt
     val arr = io.StdIn.readLine.split(" ").map(_.toInt)
-    val ameba = Array.fill(2*n+1)(0)
-    for(i <- 0 until n) {
-      ameba(2*i+1) = ameba(arr(i)-1)+1
+    val ameba = Array.fill(2 * n + 1)(0)
+    for (i <- 0 until n) {
+      ameba(2 * i + 1) = ameba(arr(i) - 1) + 1
     }
+  }
+
+  def findTakahashi = {
+    import io.StdIn._
+    val n = readInt
+    val h = readLine.split(" ").map(_.toInt)
+    val r = h.indexWhere(p => p == h.max)
+    println(r + 1)
   }
 
 }
