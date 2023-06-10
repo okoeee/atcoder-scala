@@ -1635,4 +1635,16 @@ object ABC {
     println(r._1)
   }
 
+  def abcdefg = {
+    val C = Array(("A", 0), ("B", 3), ("C", 4), ("D", 8), ("E", 9), ("F", 14), ("G", 23))
+    val Array(a, c) = io.StdIn.readLine.split(" ")
+    val i1 = C.find(p => p._1 == a)
+    val i2 = C.find(p => p._1 == c)
+    val r = for {
+      e1 <- i1
+      e2 <- i2
+    } yield scala.math.abs(e2._2 - e1._2)
+    r.foreach(println)
+  }
+
 }
