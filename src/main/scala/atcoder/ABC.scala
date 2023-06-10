@@ -1672,4 +1672,41 @@ object ABC {
     println(r.flatten.mkString(" "))
   }
 
+  def snukeTheCookiePickerOther = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(io.StdIn.readLine.split(""))
+  }
+
+  def snukeTheCookiePickerByGPT = {
+    import scala.io.StdIn._
+
+    val Array(h, w) = readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(readLine)
+
+    var a = h
+    var b = 0
+    var c = w
+    var d = 0
+
+    for {
+      i <- 0 until h
+      j <- 0 until w
+      if arr(i)(j) == '#'
+    } {
+      a = math.min(a, i)
+      b = math.max(b, i)
+      c = math.min(c, j)
+      d = math.max(d, j)
+    }
+
+    for {
+      i <- a to b
+      j <- c to d
+      if arr(i)(j) == '.'
+    } {
+      println(s"${i + 1} ${j + 1}")
+    }
+
+  }
+
 }
