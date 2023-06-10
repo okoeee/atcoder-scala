@@ -1628,4 +1628,11 @@ object ABC {
     println(r)
   }
 
+  def waterStation = {
+    val N = io.StdIn.readInt
+    val list = (0 to 20).map(p => (p * 5, scala.math.abs(N - p * 5)))
+    val r = list.minBy(_._2)
+    println(r._1)
+  }
+
 }
