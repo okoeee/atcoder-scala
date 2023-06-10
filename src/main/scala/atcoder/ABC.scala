@@ -1647,4 +1647,29 @@ object ABC {
     r.foreach(println)
   }
 
+  def snukeTheCookiePicker = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(io.StdIn.readLine.split(""))
+
+    def isOk(i: Int, j: Int): Boolean = {
+      if (i - 1 < 0 && j - 1 < 0) arr(i + 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (i - 1 < 0 && j + 1 == w) arr(i + 1)(j) == "#" && arr(i)(j - 1) == "#"
+      else if (i + 1 == h && j - 1 < 0) arr(i - 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (i + 1 == h && j + 1 == w) arr(i - 1)(j) == "#" && arr(i)(j - 1) == "#"
+      else if (i - 1 < 0) arr(i)(j - 1) == "#" && arr(i + 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (i + 1 == h) arr(i)(j - 1) == "#" && arr(i - 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (j - 1 < 0) arr(i - 1)(j) == "#" && arr(i)(j + 1) == "#" && arr(i + 1)(j) == "#"
+      else if (j + 1 == w) arr(i - 1)(j) == "#" && arr(i)(j - 1) == "#" && arr(i + 1)(j) == "#"
+      else Array(arr(i - 1)(j), arr(i)(j - 1), arr(i)(j + 1), arr(i + 1)(j)).count(_ == "#") >= 3
+    }
+
+    val r = for {
+      i <- 0 until h
+      j <- 0 until w
+      if arr(i)(j) == "." && isOk(i, j)
+    } yield Array(i + 1, j + 1)
+
+    println(r.flatten.mkString(" "))
+  }
+
 }
