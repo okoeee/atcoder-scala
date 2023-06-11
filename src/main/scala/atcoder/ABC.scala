@@ -1635,12 +1635,37 @@ object ABC {
       io.StdIn.readLine.split("").zipWithIndex.foreach { case (elem, j) => arr(i - 1)(j) = (i, j + 1, elem) }
     }
     val filteredArr = arr.flatten.filter { case (x, y, elem) => elem == "#" }
-    println(filteredArr.mkString(", "))
-    val cb = filteredArr.combinations(4)
-    val r = cb.count { p =>
-      val Array(d1, d2, d3, d4, d5, d6) = Array(pow(p(0)._1 - p(1)._1, 2) + pow(p(0)._2 - p(1)._2, 2), pow(p(1)._1 - p(2)._1, 2) + pow(p(1)._2 - p(2)._2, 2), pow(p(2)._1 - p(3)._1, 2) + pow(p(2)._2 - p(3)._2, 2), pow(p(3)._1 - p(0)._1, 2) + pow(p(3)._2 - p(0)._2, 2), pow(p(0)._1 - p(2)._1, 2) + pow(p(0)._2 - p(2)._2, 2), pow(p(1)._1 - p(3)._1, 2) + pow(p(1)._2 - p(3)._2, 2)).sorted
+    val r = filteredArr.combinations(4).count { p =>
+      val IndexedSeq(d1, d2, d3, d4, d5, d6) = (for {
+        i <- 0 to 2
+        j <- i+1 to 3
+      } yield sqrt(pow(p(i)._1 - p(j)._1, 2) + pow(p(i)._2 - p(j)._2, 2))
+      ).sorted
+
       d1 == d2 && d2 == d3 && d3 == d4 && d5 == d6 && pow(d5, 2) == 2 * pow(d1, 2)
     }
+    println(r)
+  }
+  def countingSquaresOther = {
+    import scala.math._
+//    val arr = Array.fill(9, 9)((0, 0, ""))
+//    for (i <- 1 to 9) {
+//      io.StdIn.readLine.split("").zipWithIndex.foreach { case (elem, j) => arr(i - 1)(j) = (i, j + 1, elem) }
+//    }
+//    val filteredArr = arr.flatten.filter { case (x, y, elem) => elem == "#" }
+
+    val s = for (i <- 1 to 9) yield {
+      io.StdIn.readLine.split("").zipWithIndex.collect { case (elem, j) if elem == "#" => (i, j+1)}
+    }
+
+    val r = s.flatten.combinations(4).count { p =>
+      val dist = (for {
+        i <- 0 to 2
+        j <- i+1 to 3
+      } yield pow(p(i)._1 - p(j)._1, 2) + pow(p(i)._2 - p(j)._2, 2)).toSet
+      dist.size == 2
+    }
+
     println(r)
   }
 
