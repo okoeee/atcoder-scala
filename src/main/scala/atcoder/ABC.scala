@@ -1631,17 +1631,98 @@ object ABC {
   def countingSquares = {
     import scala.math._
     val arr = Array.fill(9, 9)((0, 0, ""))
-    for(i <- 1 to 9) {
-      io.StdIn.readLine.split("").zipWithIndex.foreach{case(elem, j) => arr(i-1)(j) = (i, j+1, elem)}
+    for (i <- 1 to 9) {
+      io.StdIn.readLine.split("").zipWithIndex.foreach { case (elem, j) => arr(i - 1)(j) = (i, j + 1, elem) }
     }
-    val filteredArr = arr.flatten.filter{case (x, y, elem) => elem == "#"}
+    val filteredArr = arr.flatten.filter { case (x, y, elem) => elem == "#" }
     println(filteredArr.mkString(", "))
     val cb = filteredArr.combinations(4)
-    val r = cb.count{ p =>
+    val r = cb.count { p =>
       val Array(d1, d2, d3, d4, d5, d6) = Array(pow(p(0)._1 - p(1)._1, 2) + pow(p(0)._2 - p(1)._2, 2), pow(p(1)._1 - p(2)._1, 2) + pow(p(1)._2 - p(2)._2, 2), pow(p(2)._1 - p(3)._1, 2) + pow(p(2)._2 - p(3)._2, 2), pow(p(3)._1 - p(0)._1, 2) + pow(p(3)._2 - p(0)._2, 2), pow(p(0)._1 - p(2)._1, 2) + pow(p(0)._2 - p(2)._2, 2), pow(p(1)._1 - p(3)._1, 2) + pow(p(1)._2 - p(3)._2, 2)).sorted
-      d1 == d2 && d2 == d3 && d3 == d4 && d5 == d6 && pow(d5, 2) == 2*pow(d1, 2)
+      d1 == d2 && d2 == d3 && d3 == d4 && d5 == d6 && pow(d5, 2) == 2 * pow(d1, 2)
     }
     println(r)
+  }
+
+  def waterStation = {
+    val N = io.StdIn.readInt
+    val list = (0 to 20).map(p => (p * 5, scala.math.abs(N - p * 5)))
+    val r = list.minBy(_._2)
+    println(r._1)
+  }
+
+  def abcdefg = {
+    val C = Array(("A", 0), ("B", 3), ("C", 4), ("D", 8), ("E", 9), ("F", 14), ("G", 23))
+    val Array(a, c) = io.StdIn.readLine.split(" ")
+    val i1 = C.find(p => p._1 == a)
+    val i2 = C.find(p => p._1 == c)
+    val r = for {
+      e1 <- i1
+      e2 <- i2
+    } yield scala.math.abs(e2._2 - e1._2)
+    r.foreach(println)
+  }
+
+  def snukeTheCookiePicker = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(io.StdIn.readLine.split(""))
+
+    def isOk(i: Int, j: Int): Boolean = {
+      if (i - 1 < 0 && j - 1 < 0) arr(i + 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (i - 1 < 0 && j + 1 == w) arr(i + 1)(j) == "#" && arr(i)(j - 1) == "#"
+      else if (i + 1 == h && j - 1 < 0) arr(i - 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (i + 1 == h && j + 1 == w) arr(i - 1)(j) == "#" && arr(i)(j - 1) == "#"
+      else if (i - 1 < 0) arr(i)(j - 1) == "#" && arr(i + 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (i + 1 == h) arr(i)(j - 1) == "#" && arr(i - 1)(j) == "#" && arr(i)(j + 1) == "#"
+      else if (j - 1 < 0) arr(i - 1)(j) == "#" && arr(i)(j + 1) == "#" && arr(i + 1)(j) == "#"
+      else if (j + 1 == w) arr(i - 1)(j) == "#" && arr(i)(j - 1) == "#" && arr(i + 1)(j) == "#"
+      else Array(arr(i - 1)(j), arr(i)(j - 1), arr(i)(j + 1), arr(i + 1)(j)).count(_ == "#") >= 3
+    }
+
+    val r = for {
+      i <- 0 until h
+      j <- 0 until w
+      if arr(i)(j) == "." && isOk(i, j)
+    } yield Array(i + 1, j + 1)
+
+    println(r.flatten.mkString(" "))
+  }
+
+  def snukeTheCookiePickerOther = {
+    val Array(h, w) = io.StdIn.readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(io.StdIn.readLine.split(""))
+  }
+
+  def snukeTheCookiePickerByGPT = {
+    import scala.io.StdIn._
+
+    val Array(h, w) = readLine.split(" ").map(_.toInt)
+    val arr = Array.fill(h)(readLine)
+
+    var a = h
+    var b = 0
+    var c = w
+    var d = 0
+
+    for {
+      i <- 0 until h
+      j <- 0 until w
+      if arr(i)(j) == '#'
+    } {
+      a = math.min(a, i)
+      b = math.max(b, i)
+      c = math.min(c, j)
+      d = math.max(d, j)
+    }
+
+    for {
+      i <- a to b
+      j <- c to d
+      if arr(i)(j) == '.'
+    } {
+      println(s"${i + 1} ${j + 1}")
+    }
+
   }
 
 }
