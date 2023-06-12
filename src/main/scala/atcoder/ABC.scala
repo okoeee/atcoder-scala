@@ -1648,12 +1648,6 @@ object ABC {
   }
   def countingSquaresOther = {
     import scala.math._
-//    val arr = Array.fill(9, 9)((0, 0, ""))
-//    for (i <- 1 to 9) {
-//      io.StdIn.readLine.split("").zipWithIndex.foreach { case (elem, j) => arr(i - 1)(j) = (i, j + 1, elem) }
-//    }
-//    val filteredArr = arr.flatten.filter { case (x, y, elem) => elem == "#" }
-
     val s = for (i <- 1 to 9) yield {
       io.StdIn.readLine.split("").zipWithIndex.collect { case (elem, j) if elem == "#" => (i, j+1)}
     }
@@ -1686,6 +1680,14 @@ object ABC {
       e2 <- i2
     } yield scala.math.abs(e2._2 - e1._2)
     r.foreach(println)
+  }
+
+  def abcdefgOther = {
+    val C = Array(0, 3, 4, 8, 9, 14, 23)
+    val Array(a, c) = io.StdIn.readLine.split(" ").map(_.head)
+    val i1 = C(a - 'A')
+    val i2 = C(c - 'A')
+    println(math.abs(i1 - i2))
   }
 
   def snukeTheCookiePicker = {
