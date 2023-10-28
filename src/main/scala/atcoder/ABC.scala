@@ -1638,9 +1638,8 @@ object ABC {
     val r = filteredArr.combinations(4).count { p =>
       val IndexedSeq(d1, d2, d3, d4, d5, d6) = (for {
         i <- 0 to 2
-        j <- i+1 to 3
-      } yield sqrt(pow(p(i)._1 - p(j)._1, 2) + pow(p(i)._2 - p(j)._2, 2))
-      ).sorted
+        j <- i + 1 to 3
+      } yield sqrt(pow(p(i)._1 - p(j)._1, 2) + pow(p(i)._2 - p(j)._2, 2))).sorted
 
       d1 == d2 && d2 == d3 && d3 == d4 && d5 == d6 && pow(d5, 2) == 2 * pow(d1, 2)
     }
@@ -1649,13 +1648,13 @@ object ABC {
   def countingSquaresOther = {
     import scala.math._
     val s = for (i <- 1 to 9) yield {
-      io.StdIn.readLine.split("").zipWithIndex.collect { case (elem, j) if elem == "#" => (i, j+1)}
+      io.StdIn.readLine.split("").zipWithIndex.collect { case (elem, j) if elem == "#" => (i, j + 1) }
     }
 
     val r = s.flatten.combinations(4).count { p =>
       val dist = (for {
         i <- 0 to 2
-        j <- i+1 to 3
+        j <- i + 1 to 3
       } yield pow(p(i)._1 - p(j)._1, 2) + pow(p(i)._2 - p(j)._2, 2)).toSet
       dist.size == 2
     }
@@ -1750,6 +1749,27 @@ object ABC {
       println(s"${i + 1} ${j + 1}")
     }
 
+  }
+
+  def worldMeeting325 = {
+    import scala.io.StdIn
+
+    val n = io.StdIn.readInt
+    val arr = Array.fill(n)(io.StdIn.readLine.split(" ").map(_.toInt))
+
+    val result = for {
+      t <- 0 until 23
+    } yield {
+      arr
+        .filter { arr =>
+          val target = (arr(1) + t) % 24
+          9 <= target && target < 18
+        }
+        .map(v => v(0))
+        .sum
+    }
+
+    println(result.max)
   }
 
 }
