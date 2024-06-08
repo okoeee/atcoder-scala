@@ -1,6 +1,7 @@
 package example
 
 import atcoder.{ABC, ABC212, BeginnerContest, BeginnersSelection}
+import example.Sample.Test1
 import problems.Solution
 
 import scala.concurrent.{Await, future}
